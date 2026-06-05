@@ -1,1181 +1,1079 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="目が見えなくても、魂は視える。数秘を用いた前世鑑定・魂の石診断。音信不通・複雑愛・復縁・繰り返す恋のカルマを読み解きます。">
-<meta property="og:title" content="前世と魂の石 無料診断｜Lilith Destiny">
-<meta property="og:description" content="あなたが選ばれない理由、もう視えてる。数秘で前世・魂の石・運命のズレを読み解く無料診断。">
+<meta name="description" content="苦しい恋の理由を、誕生日の数秘とオラクルから読み解くLiLith Destinyの無料診断。">
+<meta property="og:title" content="縁と魂の恋愛リーディング - LiLith Destiny">
+<meta property="og:description" content="相手の気持ち、曖昧な関係、忘れられない恋。その苦しさにある感情と縁の流れを読み解きます。">
 <meta property="og:type" content="website">
-<title>前世と魂の石 無料診断｜Lilith Destiny</title>
+<title>縁と魂の恋愛リーディング - LiLith Destiny</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Noto+Serif+JP:wght@200;300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Serif+JP:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --void:              #04050a;
-  --deep:              #080c18;
-  --crystal:           #b0b8f8;
-  --crystal-2:         #d0d8ff;
-  --crystal-dim:       rgba(160,170,240,0.55);
-  --crystal-faint:     rgba(160,170,240,0.14);
-  --text-primary:      #e8eef8;
-  --text-secondary:    rgba(210,225,245,0.82);
-  --text-muted:        rgba(180,200,230,0.55);
-  --text-dim:          rgba(150,170,210,0.32);
-  --line-green:        rgba(0,185,0,0.12);
-  --line-green-border: rgba(0,200,0,0.35);
-  --line-green-text:   #b8f0b8;
+  --night: #090711;
+  --ink: #14101d;
+  --panel: rgba(18, 13, 28, 0.86);
+  --panel-soft: rgba(255, 247, 250, 0.055);
+  --rose: #f0a2b5;
+  --rose-deep: #9d314c;
+  --moon: #e9ddc7;
+  --violet: #b8a4ff;
+  --text: #fff7fb;
+  --muted: rgba(255, 239, 246, 0.76);
+  --dim: rgba(255, 239, 246, 0.48);
+  --line: rgba(255, 229, 238, 0.16);
 }
 
 html { scroll-behavior: smooth; }
 
 body {
-  background: var(--void);
-  color: var(--text-primary);
-  font-family: 'Noto Serif JP', serif;
-  font-weight: 200;
   min-height: 100vh;
   overflow-x: hidden;
+  background:
+    radial-gradient(ellipse 70% 55% at 50% -12%, rgba(100, 42, 120, 0.78), transparent 62%),
+    radial-gradient(ellipse 58% 42% at 8% 72%, rgba(120, 36, 70, 0.5), transparent 58%),
+    radial-gradient(ellipse 48% 36% at 95% 40%, rgba(48, 44, 130, 0.5), transparent 55%),
+    linear-gradient(180deg, #080711 0%, #120a14 48%, #080711 100%);
+  color: var(--text);
+  font-family: "Noto Serif JP", serif;
   -webkit-font-smoothing: antialiased;
 }
 
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 90% 65% at 50% -8%,  rgba(50,20,160,0.90) 0%, transparent 58%),
-    radial-gradient(ellipse 60% 50% at 5%  78%,  rgba(70,10,150,0.70) 0%, transparent 55%),
-    radial-gradient(ellipse 55% 45% at 95% 55%,  rgba(90,25,170,0.60) 0%, transparent 50%),
-    radial-gradient(ellipse 50% 35% at 50% 105%, rgba(40,10,110,0.65)  0%, transparent 50%),
-    radial-gradient(ellipse 30% 25% at 80% 20%,  rgba(100,40,200,0.35) 0%, transparent 45%);
-  pointer-events: none;
-  z-index: 0;
-}
-
-#star-canvas {
+#stars {
   position: fixed;
   inset: 0;
   z-index: 0;
   pointer-events: none;
 }
 
-/* ── Crystal shards ── */
-.crystals {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 1;
-  overflow: hidden;
-}
-
-.shard {
-  position: absolute;
-  opacity: 0;
-  animation: shardFloat linear infinite;
-}
-
-@keyframes shardFloat {
-  0%   { transform: translateY(108vh) rotate(0deg) scale(0.6);   opacity: 0; }
-  6%   { opacity: 1; }
-  94%  { opacity: 0.55; }
-  100% { transform: translateY(-80px) rotate(240deg) scale(1.1); opacity: 0; }
-}
-
-.shard svg { width: 100%; height: 100%; }
-
-.container {
+.shell {
   position: relative;
-  z-index: 2;
-  max-width: 480px;
+  z-index: 1;
+  width: min(100%, 520px);
   margin: 0 auto;
-  padding: 0 24px 110px;
+  padding: 32px 20px 92px;
 }
 
-/* ── Header ── */
-.header {
-  text-align: center;
-  padding: 68px 0 38px;
+.top {
+  display: grid;
+  gap: 22px;
+  padding: 18px 0 22px;
 }
 
-.mark {
-  width: 72px;
-  height: 48px;
-  margin: 0 auto 30px;
+.brand {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
 }
-.mark svg { width: 100%; height: 100%; }
 
 .brand-name {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 12px;
-  font-weight: 300;
-  letter-spacing: 0.38em;
-  color: rgba(168,200,232,0.72);
-  text-transform: uppercase;
-  margin-bottom: 24px;
-  text-shadow: 0 0 28px rgba(130,120,255,0.75), 0 0 10px rgba(160,170,255,0.5);
-}
-
-.headline {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(19px, 5.2vw, 26px);
-  text-shadow: 0 0 40px rgba(140,120,255,0.75), 0 0 16px rgba(160,170,255,0.55), 0 0 4px rgba(200,210,255,0.4);
-  font-weight: 300;
-  font-style: italic;
-  line-height: 1.75;
-  color: var(--text-primary);
-  margin-bottom: 18px;
-  letter-spacing: 0.03em;
-}
-
-.sub-headline {
+  font-family: "Cormorant Garamond", serif;
   font-size: 13px;
-  letter-spacing: 0.1em;
-  color: rgba(200,218,240,0.75);
-  line-height: 2.1;
-  text-shadow: 0 0 24px rgba(130,120,255,0.55), 0 0 8px rgba(160,170,240,0.35);
-}
-
-/* ── Divider ── */
-.divider {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin: 30px 0;
-}
-.divider-line {
-  flex: 1;
-  height: 0.5px;
-  background: linear-gradient(to right, transparent, var(--crystal-dim), transparent);
-}
-.divider-sym {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 16px;
-  color: rgba(160,150,255,0.65);
-  text-shadow: 0 0 12px rgba(140,120,255,0.7);
-}
-
-/* ── Steps ── */
-.step { display: none; }
-.step.active {
-  display: block;
-  animation: fadeSlide 0.6s cubic-bezier(0.22,0.61,0.36,1);
-}
-@keyframes fadeSlide {
-  from { opacity: 0; transform: translateY(22px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-/* ── Section label ── */
-.sec-label {
-  font-size: 11px;
-  letter-spacing: 0.22em;
-  color: rgba(160,170,255,0.72);
+  letter-spacing: 0.28em;
   text-transform: uppercase;
-  margin-bottom: 18px;
-  text-shadow: 0 0 14px rgba(130,110,255,0.5);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.sec-label::after {
-  content: '';
-  flex: 1;
-  height: 0.5px;
-  background: linear-gradient(to right, var(--crystal-faint), transparent);
+  color: rgba(255, 236, 244, 0.74);
 }
 
-/* ── Badge ── */
-.badge {
+.moon-mark {
+  width: 48px;
+  height: 48px;
+  filter: drop-shadow(0 0 18px rgba(240, 162, 181, 0.55));
+}
+
+.hero {
+  display: grid;
+  gap: 16px;
+  padding: 8px 0 4px;
+}
+
+.eyebrow {
   display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: rgba(120,20,35,0.22);
-  border: 0.5px solid rgba(160,30,50,0.7);
-  color: rgba(240,160,170,0.95);
-  font-size: 12px;
-  letter-spacing: 0.1em;
-  padding: 7px 16px;
-  border-radius: 1px;
-  margin-bottom: 22px;
-  animation: urgentPulse 2.8s ease-in-out infinite;
-}
-@keyframes urgentPulse {
-  0%,100% { border-color: rgba(160,30,50,0.6); }
-  50%      { border-color: rgba(200,50,70,0.9); }
-}
-
-/* ── Glass card ── */
-.glass-card {
-  background: rgba(8,12,24,0.72);
-  border: 0.5px solid rgba(168,200,232,0.14);
-  border-radius: 2px;
-  padding: 28px 22px;
-  margin-bottom: 16px;
-  position: relative;
-  overflow: hidden;
-}
-.glass-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 1px;
-  background: linear-gradient(to right, transparent, rgba(160,150,255,0.65), transparent);
-}
-.glass-card::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(168,200,232,0.035), transparent 70%);
-  pointer-events: none;
-}
-
-.card-inner { position: relative; z-index: 1; }
-
-.card-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 22px;
-  font-style: italic;
-  font-weight: 300;
-  color: var(--text-primary);
-  margin-bottom: 12px;
-  line-height: 1.65;
-  text-shadow: 0 0 22px rgba(140,170,255,0.38);
-}
-.card-sub {
-  font-size: 13px;
-  line-height: 2.2;
-  color: rgba(195,215,238,0.72);
-  margin-bottom: 24px;
-  letter-spacing: 0.05em;
-}
-
-.benefits {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 26px;
-}
-.benefit {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  font-size: 13px;
-  color: rgba(215,228,245,0.88);
-  line-height: 1.9;
-}
-.benefit-dot {
-  width: 4px; height: 4px;
-  background: var(--crystal-dim);
-  border-radius: 50%;
-  flex-shrink: 0;
-  margin-top: 9px;
-}
-
-/* ── Buttons ── */
-.btn-line {
-  width: 100%;
-  background: rgba(100,15,28,0.45);
-  border: 0.5px solid rgba(160,35,55,0.7);
-  color: rgba(245,195,200,0.95);
-  font-family: 'Noto Serif JP', serif;
-  font-size: 13px;
-  font-weight: 300;
-  letter-spacing: 0.18em;
-  padding: 18px;
-  cursor: pointer;
-  border-radius: 2px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  transition: background 0.35s, border-color 0.35s;
-  text-decoration: none;
-}
-.btn-line:hover {
-  background: rgba(140,20,38,0.6);
-  border-color: rgba(200,50,70,0.9);
-}
-.btn-line-ico { width: 20px; height: 20px; flex-shrink: 0; }
-.btn-line-ico svg { width: 100%; height: 100%; }
-
-.note {
-  font-size: 12px;
-  letter-spacing: 0.07em;
-  color: rgba(168,200,232,0.48);
-  text-align: center;
-  margin-top: 14px;
-  line-height: 1.9;
-}
-
-.btn-ghost {
-  width: 100%;
-  background: transparent;
-  border: 0.5px solid rgba(168,200,232,0.18);
-  color: var(--text-primary);
-  font-family: 'Noto Serif JP', serif;
-  font-size: 13px;
-  font-weight: 300;
-  letter-spacing: 0.2em;
-  padding: 18px;
-  cursor: pointer;
-  border-radius: 2px;
-  margin-top: 10px;
-  transition: border-color 0.35s, background 0.35s;
-  position: relative;
-  overflow: hidden;
-}
-.btn-ghost::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse 100% 100% at 50% 50%, rgba(168,200,232,0.06), transparent);
-  opacity: 0;
-  transition: opacity 0.35s;
-}
-.btn-ghost:hover::after { opacity: 1; }
-.btn-ghost:hover { border-color: rgba(168,200,232,0.42); }
-.btn-ghost span { position: relative; z-index: 1; }
-
-/* ── Form ── */
-.field { margin-bottom: 24px; }
-.field label {
-  display: block;
+  width: fit-content;
+  border: 1px solid rgba(240, 162, 181, 0.38);
+  border-radius: 999px;
+  padding: 7px 13px;
+  background: rgba(157, 49, 76, 0.18);
+  color: rgba(255, 220, 230, 0.92);
   font-size: 12px;
   letter-spacing: 0.12em;
-  color: var(--crystal-dim);
-  margin-bottom: 10px;
-}
-.field input {
-  width: 100%;
-  background: rgba(8,12,24,0.62);
-  border: 0.5px solid rgba(168,200,232,0.14);
-  color: var(--text-primary);
-  font-family: 'Noto Serif JP', serif;
-  font-size: 15px;
-  font-weight: 200;
-  padding: 14px 16px;
-  border-radius: 2px;
-  outline: none;
-  transition: border-color 0.3s, background 0.3s;
-  -webkit-appearance: none;
-}
-.field input:focus {
-  border-color: var(--crystal-dim);
-  background: rgba(168,200,232,0.04);
-}
-.field input::placeholder { color: rgba(168,200,232,0.18); font-size: 13px; }
-input[type="date"]::-webkit-calendar-picker-indicator {
-  filter: invert(0.65) sepia(0.3) saturate(0.5) hue-rotate(190deg);
-  opacity: 0.45;
-  cursor: pointer;
 }
 
-/* ── Loading ── */
-.loading-wrap { text-align: center; padding: 80px 0; }
-.sigil {
-  width: 90px; height: 90px;
-  margin: 0 auto 38px;
-  animation: spin 12s linear infinite;
-}
-@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-.loading-text {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 17px;
+h1 {
+  font-family: "Cormorant Garamond", "Noto Serif JP", serif;
+  font-size: clamp(33px, 10vw, 54px);
+  font-weight: 400;
   font-style: italic;
-  color: var(--crystal-dim);
-  letter-spacing: 0.08em;
-  text-shadow: 0 0 24px rgba(130,120,255,0.65), 0 0 8px rgba(160,170,240,0.4);
-}
-.dots::after {
-  content: '';
-  animation: dotanim 2.4s steps(4, end) infinite;
-}
-@keyframes dotanim {
-  0%  { content: ''; }
-  25% { content: '・'; }
-  50% { content: '・・'; }
-  75% { content: '・・・'; }
+  line-height: 1.12;
+  letter-spacing: 0;
+  text-shadow: 0 0 32px rgba(184, 164, 255, 0.48), 0 0 18px rgba(240, 162, 181, 0.38);
 }
 
-/* ── Result cards ── */
-.result-card {
-  border: 0.5px solid rgba(168,200,232,0.13);
-  padding: 28px 22px;
-  margin-bottom: 14px;
-  border-radius: 2px;
-  background: rgba(8,12,24,0.68);
-  position: relative;
-  overflow: hidden;
-}
-.result-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0;
-  width: 50px; height: 0.5px;
-  background: rgba(160,150,255,0.7);
-}
-.result-card::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(168,200,232,0.03), transparent 60%);
-  pointer-events: none;
-}
-.rc-inner { position: relative; z-index: 1; }
-
-.big-num {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 60px;
-  font-weight: 300;
-  color: rgba(168,200,232,0.72);
-  line-height: 1;
-  margin-bottom: 4px;
-  text-shadow: 0 0 30px rgba(140,180,255,0.55), 0 0 8px rgba(168,200,232,0.4);
-  text-shadow: 0 0 40px rgba(120,100,255,0.7), 0 0 16px rgba(160,170,240,0.5);
-}
-.num-label {
-  font-size: 11px;
-  letter-spacing: 0.2em;
-  color: rgba(160,155,255,0.75);
-  text-transform: uppercase;
-  margin-bottom: 20px;
-  text-shadow: 0 0 10px rgba(130,110,255,0.4);
-}
-.result-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 22px;
-  font-style: italic;
-  font-weight: 300;
-  color: var(--text-primary);
-  margin-bottom: 10px;
-  line-height: 1.5;
-  text-shadow: 0 0 20px rgba(140,170,255,0.35);
-  text-shadow: 0 0 30px rgba(130,120,255,0.6), 0 0 10px rgba(160,170,240,0.4);
-}
-.keyword-tag {
-  font-size: 11px;
-  letter-spacing: 0.15em;
-  color: rgba(160,155,255,0.75);
-  text-transform: uppercase;
-  margin-bottom: 14px;
-  text-shadow: 0 0 10px rgba(130,110,255,0.4);
-}
-.result-body {
-  font-size: 13px;
-  line-height: 2.2;
-  color: var(--text-secondary);
+.lead {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 2;
   letter-spacing: 0.04em;
 }
 
-.past-life-card {
-  background: rgba(25,18,65,0.42);
-  border: 0.5px solid rgba(110,85,195,0.22);
-  padding: 24px 22px;
-  border-radius: 2px;
-  margin-bottom: 14px;
-  position: relative;
-  overflow: hidden;
-}
-.past-life-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 0.5px;
-  background: linear-gradient(to right, transparent, rgba(110,85,195,0.5), transparent);
-}
-.plc-inner { position: relative; z-index: 1; }
-.era-tag {
-  font-size: 11px;
-  letter-spacing: 0.22em;
-  color: rgba(170,155,255,0.85);
-  text-shadow: 0 0 12px rgba(140,120,255,0.45);
-  text-transform: uppercase;
-  margin-bottom: 12px;
-}
-.past-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 21px;
-  font-style: italic;
-  color: #d8d4f8;
-  margin-bottom: 10px;
-  line-height: 1.5;
-  text-shadow: 0 0 18px rgba(160,140,255,0.4);
-  text-shadow: 0 0 26px rgba(110,90,220,0.6), 0 0 8px rgba(150,140,255,0.35);
-}
-.past-body {
-  font-size: 12px;
-  line-height: 2.2;
-  color: rgba(195,188,240,0.78);
+.pain-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px;
+  margin-top: 2px;
 }
 
-.stone-card {
-  background: rgba(8,12,32,0.68);
-  border: 0.5px solid rgba(168,200,232,0.18);
-  padding: 24px 22px;
-  border-radius: 2px;
-  margin-bottom: 14px;
-  display: flex;
-  align-items: flex-start;
-  gap: 20px;
-  position: relative;
-  overflow: hidden;
-}
-.stone-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 0.5px;
-  background: linear-gradient(to right, transparent, var(--crystal-dim), transparent);
-}
-.sc-inner { position: relative; z-index: 1; display: flex; align-items: flex-start; gap: 20px; width: 100%; }
-.gem-wrap { width: 58px; height: 58px; flex-shrink: 0; }
-.gem-wrap svg { width: 100%; height: 100%; }
-.stone-name {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 21px;
-  font-style: italic;
-  color: var(--crystal-2);
-  margin-bottom: 6px;
-  text-shadow: 0 0 20px rgba(168,200,232,0.5);
-  text-shadow: 0 0 28px rgba(140,120,255,0.65), 0 0 10px rgba(170,180,255,0.4);
-}
-.stone-prop {
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  color: rgba(160,155,255,0.75);
-  text-transform: uppercase;
-  margin-bottom: 10px;
-  text-shadow: 0 0 10px rgba(130,110,255,0.4);
-}
-.stone-desc {
+.pain {
+  min-height: 46px;
+  border: 1px solid rgba(255, 229, 238, 0.13);
+  border-radius: 6px;
+  padding: 10px 11px;
+  background: rgba(255, 247, 250, 0.045);
+  color: rgba(255, 240, 246, 0.84);
   font-size: 12px;
-  line-height: 2.2;
-  color: rgba(185,212,240,0.78);
+  line-height: 1.55;
 }
 
-.shift-card {
-  border: 0.5px solid rgba(168,200,232,0.14);
-  background: rgba(5,8,22,0.58);
-  padding: 28px 22px;
-  border-radius: 2px;
-  margin-bottom: 14px;
-  position: relative;
-  overflow: hidden;
-}
-.shift-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse 60% 40% at 50% 0%, rgba(168,200,232,0.04), transparent 70%);
-  pointer-events: none;
-}
-.shc-inner { position: relative; z-index: 1; }
-.shift-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 19px;
-  font-style: italic;
-  color: var(--text-primary);
-  margin-bottom: 18px;
-  line-height: 1.65;
-  text-shadow: 0 0 18px rgba(140,170,255,0.35);
-  text-shadow: 0 0 26px rgba(130,110,240,0.55), 0 0 8px rgba(160,170,240,0.35);
-}
-.shift-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-.shift-list li {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  font-size: 12px;
-  line-height: 1.95;
-  color: rgba(198,216,240,0.82);
-}
-.shift-list li::before {
-  content: '—';
-  color: var(--crystal-dim);
-  flex-shrink: 0;
-  margin-top: 1px;
+.step { display: none; }
+.step.active {
+  display: block;
+  animation: rise 0.45s ease;
 }
 
-/* ── Next CTA ── */
-.next-step {
-  border: 0.5px solid rgba(168,200,232,0.16);
-  background: rgba(8,12,28,0.78);
-  padding: 36px 22px;
-  border-radius: 2px;
-  margin-top: 28px;
-  text-align: center;
+@keyframes rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.card {
   position: relative;
   overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.07), transparent 42%), var(--panel);
+  box-shadow: 0 26px 90px rgba(0, 0, 0, 0.32);
 }
-.next-step::before {
-  content: '';
+
+.card::before {
+  content: "";
   position: absolute;
-  top: 0; left: 0; right: 0;
+  inset: 0 0 auto;
   height: 1px;
-  background: linear-gradient(to right, transparent, var(--crystal-dim), transparent);
+  background: linear-gradient(90deg, transparent, rgba(240, 162, 181, 0.78), transparent);
 }
-.next-step::after {
-  content: '';
+
+.card-inner {
+  position: relative;
+  z-index: 1;
+  padding: 24px 20px;
+}
+
+.section-title {
+  margin-bottom: 10px;
+  font-family: "Cormorant Garamond", "Noto Serif JP", serif;
+  font-size: 25px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.35;
+}
+
+.section-copy {
+  margin-bottom: 22px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 2;
+}
+
+.field {
+  display: grid;
+  gap: 9px;
+  margin-bottom: 18px;
+}
+
+.field label, .group-label {
+  color: rgba(255, 224, 234, 0.72);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+}
+
+input, select, textarea {
+  width: 100%;
+  border: 1px solid rgba(255, 229, 238, 0.16);
+  border-radius: 6px;
+  outline: none;
+  background: rgba(8, 7, 17, 0.72);
+  color: var(--text);
+  font: 400 15px "Noto Serif JP", serif;
+}
+
+input, select { min-height: 48px; padding: 0 13px; }
+textarea { min-height: 86px; resize: vertical; padding: 13px; line-height: 1.8; }
+
+input:focus, select:focus, textarea:focus {
+  border-color: rgba(240, 162, 181, 0.62);
+  box-shadow: 0 0 0 3px rgba(240, 162, 181, 0.1);
+}
+
+.choice-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px;
+  margin: 9px 0 20px;
+}
+
+.choice {
+  position: relative;
+  min-height: 48px;
+}
+
+.choice input {
   position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(168,200,232,0.05), transparent 70%);
+  opacity: 0;
   pointer-events: none;
 }
-.ns-inner { position: relative; z-index: 1; }
-.next-tag {
-  font-size: 11px;
-  letter-spacing: 0.25em;
-  color: rgba(160,170,255,0.72);
-  text-transform: uppercase;
-  margin-bottom: 18px;
-  text-shadow: 0 0 14px rgba(130,110,255,0.5);
-}
-.next-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 21px;
-  font-style: italic;
-  font-weight: 300;
-  color: var(--text-primary);
-  margin-bottom: 14px;
-  line-height: 1.65;
-  text-shadow: 0 0 30px rgba(130,120,255,0.6), 0 0 10px rgba(160,170,240,0.4);
-}
-.next-body {
-  font-size: 12px;
-  line-height: 2.2;
-  color: var(--text-muted);
-  margin-bottom: 28px;
-  letter-spacing: 0.05em;
-}
-.btn-cta {
-  display: block;
-  width: 100%;
-  background: rgba(100,15,28,0.45);
-  border: 0.5px solid rgba(160,35,55,0.7);
-  color: rgba(245,195,200,0.95);
-  font-family: 'Noto Serif JP', serif;
+
+.choice span {
+  display: grid;
+  min-height: 48px;
+  place-items: center;
+  border: 1px solid rgba(255, 229, 238, 0.16);
+  border-radius: 6px;
+  background: rgba(255, 247, 250, 0.045);
+  color: rgba(255, 240, 246, 0.82);
   font-size: 13px;
-  font-weight: 300;
-  letter-spacing: 0.2em;
-  padding: 18px;
+  text-align: center;
+  transition: border-color 0.2s, background 0.2s, color 0.2s;
+}
+
+.choice input:checked + span {
+  border-color: rgba(240, 162, 181, 0.72);
+  background: rgba(157, 49, 76, 0.34);
+  color: #fff;
+}
+
+.btn {
+  display: inline-flex;
+  width: 100%;
+  min-height: 56px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(240, 162, 181, 0.72);
+  border-radius: 6px;
+  background: linear-gradient(135deg, rgba(157, 49, 76, 0.92), rgba(98, 54, 130, 0.9));
+  color: #fff8fb;
   cursor: pointer;
-  border-radius: 2px;
-  transition: background 0.35s, border-color 0.35s;
+  font: 500 14px "Noto Serif JP", serif;
+  letter-spacing: 0.13em;
+  text-align: center;
   text-decoration: none;
+  transition: transform 0.2s, filter 0.2s;
+}
+
+.btn:hover { transform: translateY(-1px); filter: brightness(1.06); }
+
+.btn.secondary {
+  margin-top: 10px;
+  border-color: rgba(255, 229, 238, 0.18);
+  background: rgba(255, 247, 250, 0.035);
+  color: rgba(255, 240, 246, 0.86);
+}
+
+.note {
+  margin-top: 12px;
+  color: var(--dim);
+  font-size: 11px;
+  line-height: 1.8;
   text-align: center;
 }
-.btn-cta:hover {
-  background: rgba(0,185,0,0.22);
-  border-color: rgba(0,220,0,0.5);
-}
-.btn-reset {
-  display: block;
-  background: transparent;
-  border: none;
-  color: var(--text-dim);
-  font-family: 'Noto Serif JP', serif;
-  font-size: 11px;
-  font-weight: 300;
-  letter-spacing: 0.2em;
-  padding: 10px;
-  cursor: pointer;
-  margin: 16px auto 0;
-  transition: color 0.3s;
-}
-.btn-reset:hover { color: var(--text-muted); }
 
-@media (max-width: 400px) {
-  .headline { font-size: 21px; }
-  .big-num  { font-size: 50px; }
-  .glass-card { padding: 22px 16px; }
+.loading {
+  display: grid;
+  place-items: center;
+  min-height: 360px;
+  text-align: center;
+}
+
+.sigil {
+  width: 92px;
+  height: 92px;
+  margin: 0 auto 28px;
+  animation: spin 12s linear infinite;
+  filter: drop-shadow(0 0 22px rgba(240, 162, 181, 0.5));
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.loading-text {
+  color: rgba(255, 224, 234, 0.78);
+  font-family: "Cormorant Garamond", serif;
+  font-size: 20px;
+  font-style: italic;
+  letter-spacing: 0.08em;
+}
+
+.dots::after {
+  content: "";
+  animation: dots 1.8s steps(4, end) infinite;
+}
+
+@keyframes dots {
+  25% { content: "・"; }
+  50% { content: "・・"; }
+  75% { content: "・・・"; }
+}
+
+.result-head {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.number-row {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.big-number {
+  color: var(--moon);
+  font-family: "Cormorant Garamond", serif;
+  font-size: 74px;
+  font-weight: 400;
+  line-height: 0.92;
+  text-shadow: 0 0 30px rgba(233, 221, 199, 0.35);
+}
+
+.tag {
+  display: inline-flex;
+  width: fit-content;
+  border: 1px solid rgba(184, 164, 255, 0.38);
+  border-radius: 999px;
+  padding: 6px 11px;
+  background: rgba(184, 164, 255, 0.1);
+  color: rgba(229, 219, 255, 0.88);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+}
+
+.reading-grid {
+  display: grid;
+  gap: 12px;
+}
+
+.reading {
+  border: 1px solid rgba(255, 229, 238, 0.13);
+  border-radius: 7px;
+  padding: 16px 15px;
+  background: rgba(255, 247, 250, 0.045);
+}
+
+.reading h3 {
+  margin-bottom: 8px;
+  color: rgba(255, 227, 235, 0.95);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+}
+
+.reading p {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 2;
+}
+
+.oracle {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  margin: 18px 0;
+  border: 1px solid rgba(240, 162, 181, 0.18);
+  border-radius: 8px;
+  padding: 14px;
+  background: rgba(157, 49, 76, 0.12);
+}
+
+.oracle-card {
+  width: 64px;
+  height: 88px;
+  flex: 0 0 64px;
+  border: 1px solid rgba(255, 229, 238, 0.28);
+  border-radius: 7px;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(circle at 50% 38%, rgba(240, 162, 181, 0.45), transparent 35%),
+    linear-gradient(160deg, rgba(184, 164, 255, 0.25), rgba(157, 49, 76, 0.25));
+}
+
+.oracle-card svg { width: 36px; height: 36px; }
+
+.oracle-text strong {
+  display: block;
+  margin-bottom: 5px;
+  color: #fff;
+  font-size: 14px;
+}
+
+.oracle-text span {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.line-box {
+  margin-top: 18px;
+  border: 1px solid rgba(112, 220, 123, 0.32);
+  border-radius: 8px;
+  padding: 18px 16px;
+  background: rgba(33, 130, 55, 0.12);
+}
+
+.line-box h3 {
+  margin-bottom: 8px;
+  color: rgba(226, 255, 229, 0.96);
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.line-box p {
+  margin-bottom: 14px;
+  color: rgba(232, 255, 234, 0.78);
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+.line-btn {
+  border-color: rgba(96, 220, 108, 0.62);
+  background: linear-gradient(135deg, rgba(30, 160, 60, 0.94), rgba(21, 120, 55, 0.94));
+}
+
+.reset {
+  display: block;
+  margin: 18px auto 0;
+  border: 0;
+  background: transparent;
+  color: var(--dim);
+  cursor: pointer;
+  font: 400 12px "Noto Serif JP", serif;
+  letter-spacing: 0.12em;
+}
+
+/* Visual refresh: moonlit LiLith world */
+body {
+  background:
+    linear-gradient(180deg, rgba(5, 4, 16, 0.2) 0%, rgba(8, 5, 20, 0.56) 42%, rgba(5, 4, 16, 0.95) 100%),
+    radial-gradient(ellipse 70% 55% at 50% 18%, rgba(198, 168, 255, 0.3), transparent 58%),
+    url("lilith-moon-bg.png") center top / cover fixed,
+    #050410;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 12px;
+  z-index: 0;
+  border: 1px solid rgba(242, 168, 207, 0.42);
+  border-radius: 2px;
+  box-shadow:
+    inset 0 0 0 1px rgba(243, 240, 255, 0.08),
+    0 0 28px rgba(200, 181, 255, 0.18);
+  pointer-events: none;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background:
+    linear-gradient(180deg, rgba(5, 4, 16, 0.22), rgba(5, 4, 16, 0.78) 68%, rgba(5, 4, 16, 0.94)),
+    radial-gradient(ellipse 80% 48% at 50% 0%, transparent 0%, rgba(5, 4, 16, 0.48) 72%);
+  pointer-events: none;
+}
+
+.shell {
+  z-index: 2;
+  padding-top: 24px;
+}
+
+.top {
+  gap: 20px;
+  padding-top: 8px;
+}
+
+.brand {
+  display: grid;
+  justify-content: center;
+  justify-items: center;
+  gap: 10px;
+  text-align: center;
+}
+
+.brand-name {
+  font-size: 15px;
+  letter-spacing: 0.34em;
+  color: rgba(246, 238, 255, 0.94);
+  text-shadow:
+    0 0 14px rgba(200, 181, 255, 0.82),
+    0 0 34px rgba(242, 168, 207, 0.58);
+}
+
+.moon-mark {
+  width: 42px;
+  height: 42px;
+  filter: drop-shadow(0 0 20px rgba(200, 181, 255, 0.76));
+}
+
+.hero {
+  text-align: center;
+}
+
+.eyebrow {
+  margin: 0 auto;
+  border-color: rgba(242, 168, 207, 0.48);
+  background: rgba(10, 6, 26, 0.42);
+  box-shadow: 0 0 18px rgba(242, 168, 207, 0.14);
+}
+
+h1 {
+  font-size: clamp(36px, 10.5vw, 58px);
+  font-weight: 500;
+  line-height: 1.08;
+  color: #f3f0ff;
+  background: linear-gradient(180deg, #ffffff 0%, #efe9ff 34%, #bca7ff 66%, #fff7fb 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow:
+    0 0 8px rgba(255, 255, 255, 0.72),
+    0 0 22px rgba(200, 181, 255, 0.88),
+    0 0 44px rgba(242, 168, 207, 0.72);
+}
+
+.pain-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  width: min(100%, 390px);
+  margin: 0 auto;
+  padding: 14px 16px;
+  border: 1px solid rgba(242, 168, 207, 0.24);
+  border-radius: 7px;
+  background: rgba(5, 4, 16, 0.4);
+  box-shadow: inset 0 0 22px rgba(200, 181, 255, 0.08);
+  text-align: left;
+}
+
+.pain {
+  display: flex;
+  min-height: auto;
+  align-items: flex-start;
+  gap: 9px;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  background: transparent;
+  color: rgba(255, 243, 249, 0.9);
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.pain::before {
+  content: "✦";
+  flex: 0 0 auto;
+  color: #f2a8cf;
+  text-shadow: 0 0 10px rgba(242, 168, 207, 0.82);
+}
+
+.card {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.07), transparent 42%),
+    radial-gradient(ellipse 90% 42% at 50% 0%, rgba(200, 181, 255, 0.14), transparent 62%),
+    rgba(12, 8, 25, 0.78);
+  border-color: rgba(242, 168, 207, 0.24);
+  backdrop-filter: blur(10px);
+}
+
+/* LiLith refinement: bold violet/pink witchcraft palette */
+body {
+  font-weight: 400;
+}
+
+.brand-name,
+.eyebrow,
+.lead,
+.pain,
+.section-copy,
+.field label,
+.group-label,
+.choice span,
+.reading p,
+.oracle-text span,
+.line-box p {
+  font-weight: 500;
+}
+
+h1 {
+  background: linear-gradient(100deg, #c7a4ff 0%, #ff8bd1 42%, #ffe4f5 56%, #a98cff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 12px rgba(255, 139, 209, 0.7)) drop-shadow(0 0 28px rgba(167, 123, 255, 0.62));
+  text-shadow: none;
+}
+
+.section-title,
+.result-title,
+.reading h3,
+.oracle-text strong {
+  font-weight: 600;
+  color: #ffd7f0;
+  text-shadow:
+    0 0 12px rgba(255, 139, 209, 0.48),
+    0 0 20px rgba(167, 123, 255, 0.34);
+}
+
+.lead strong,
+.pain::before,
+.tag,
+.big-number,
+.limited-badge {
+  color: #ff9bd7;
+}
+
+.card::after {
+  content: "☾";
+  position: absolute;
+  right: 18px;
+  top: 14px;
+  z-index: 0;
+  color: rgba(255, 155, 215, 0.36);
+  font-family: "Cormorant Garamond", serif;
+  font-size: 42px;
+  line-height: 1;
+  text-shadow:
+    0 0 16px rgba(255, 139, 209, 0.54),
+    0 0 28px rgba(167, 123, 255, 0.42);
+  pointer-events: none;
+}
+
+.oracle-card {
+  border-color: rgba(255, 155, 215, 0.5);
+  background:
+    radial-gradient(circle at 50% 35%, rgba(255, 155, 215, 0.48), transparent 34%),
+    linear-gradient(160deg, rgba(114, 72, 210, 0.48), rgba(156, 38, 127, 0.42));
+  box-shadow:
+    inset 0 0 18px rgba(255, 255, 255, 0.08),
+    0 0 20px rgba(255, 139, 209, 0.28);
+}
+
+.reading {
+  border-color: rgba(255, 155, 215, 0.2);
+  background:
+    linear-gradient(135deg, rgba(104, 62, 190, 0.16), rgba(154, 40, 120, 0.11)),
+    rgba(255, 247, 250, 0.045);
+}
+
+.line-box {
+  border-color: rgba(255, 155, 215, 0.44);
+  background:
+    radial-gradient(ellipse 90% 50% at 50% 0%, rgba(255, 139, 209, 0.16), transparent 62%),
+    linear-gradient(135deg, rgba(71, 38, 142, 0.42), rgba(126, 28, 95, 0.34));
+  box-shadow:
+    inset 0 0 28px rgba(255, 139, 209, 0.08),
+    0 0 26px rgba(167, 123, 255, 0.16);
+}
+
+.line-box h3 {
+  color: #ffe4f5;
+  font-weight: 600;
+  text-shadow:
+    0 0 12px rgba(255, 139, 209, 0.58),
+    0 0 22px rgba(167, 123, 255, 0.38);
+}
+
+.line-box p {
+  color: rgba(255, 238, 248, 0.9);
+}
+
+.limited-badge {
+  display: inline-flex;
+  margin-bottom: 10px;
+  border: 1px solid rgba(255, 155, 215, 0.56);
+  border-radius: 999px;
+  padding: 6px 12px;
+  background: rgba(255, 139, 209, 0.12);
+  color: #ffe4f5;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-shadow: 0 0 10px rgba(255, 139, 209, 0.6);
+}
+
+.line-btn {
+  border-color: rgba(255, 188, 230, 0.82);
+  background:
+    linear-gradient(135deg, rgba(255, 92, 184, 0.94), rgba(116, 74, 226, 0.94) 54%, rgba(255, 155, 215, 0.9));
+  box-shadow:
+    0 0 18px rgba(255, 139, 209, 0.36),
+    0 0 34px rgba(167, 123, 255, 0.2);
+}
+
+.btn:hover,
+.line-btn:hover {
+  filter: brightness(1.12) saturate(1.1);
+}
+
+@media (max-width: 430px) {
+  .shell { padding-inline: 16px; }
+  .choice-grid { grid-template-columns: 1fr; }
+  body::before { inset: 8px; }
+  h1 { font-size: 40px; }
+  .big-number { font-size: 64px; }
 }
 </style>
 </head>
 <body>
+<canvas id="stars" aria-hidden="true"></canvas>
 
-<canvas id="star-canvas"></canvas>
-<div class="crystals" id="crystals"></div>
-
-<div class="container">
-
-  <!-- Header -->
-  <div class="header">
-    <!-- 目隠し聖女×十字架×クリスタルを抽象化したシンボルマーク -->
-    <div class="mark" style="width:100px;height:100px;margin:0 auto 32px;">
-      <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <filter id="glow-cross" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="4" result="blur1"/>
-            <feGaussianBlur stdDeviation="1.5" result="blur2"/>
-            <feMerge><feMergeNode in="blur1"/><feMergeNode in="blur2"/><feMergeNode in="SourceGraphic"/></feMerge>
-          </filter>
-          <filter id="glow-center">
-            <feGaussianBlur stdDeviation="3" result="blur"/>
-            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-          </filter>
-        </defs>
-        <!-- 外周リング -->
-        <circle cx="50" cy="50" r="46" stroke="rgba(140,160,220,0.18)" stroke-width="0.5" stroke-dasharray="3 6"/>
-        <!-- 眼の外形 -->
-        <path d="M6 50 Q50 14 94 50 Q50 86 6 50Z"
-          stroke="rgba(168,200,232,0.22)" stroke-width="0.6" fill="none"/>
-        <!-- 目隠しの帯 -->
-        <rect x="14" y="46" width="72" height="8" rx="2"
-          fill="rgba(120,140,200,0.08)" stroke="rgba(168,200,232,0.25)" stroke-width="0.5"/>
-        <!-- 十字架アーム（太く・明るく） -->
-        <!-- 十字架グロー下敷き -->
-        <line x1="50" y1="6"  x2="50" y2="94"
-          stroke="rgba(160,140,255,0.35)" stroke-width="8" filter="url(#glow-cross)"/>
-        <line x1="6"  y1="50" x2="94" y2="50"
-          stroke="rgba(160,140,255,0.35)" stroke-width="8" filter="url(#glow-cross)"/>
-        <!-- 十字架メイン -->
-        <line x1="50" y1="6"  x2="50" y2="94"
-          stroke="rgba(210,220,255,0.95)" stroke-width="2.5" filter="url(#glow-cross)"/>
-        <line x1="6"  y1="50" x2="94" y2="50"
-          stroke="rgba(210,220,255,0.95)" stroke-width="2.5" filter="url(#glow-cross)"/>
-        <!-- 十字架の装飾エンド -->
-        <polygon points="50,4 52.5,10 50,8 47.5,10"  fill="rgba(200,220,255,0.9)"/>
-        <polygon points="50,96 52.5,90 50,92 47.5,90" fill="rgba(200,220,255,0.9)"/>
-        <polygon points="4,50 10,47.5 8,50 10,52.5"   fill="rgba(200,220,255,0.9)"/>
-        <polygon points="96,50 90,47.5 92,50 90,52.5"  fill="rgba(200,220,255,0.9)"/>
-        <!-- 中心の発光 -->
-        <circle cx="50" cy="50" r="14"  fill="rgba(130,110,255,0.2)" filter="url(#glow-center)"/>
-        <circle cx="50" cy="50" r="8"   fill="rgba(160,150,255,0.35)" filter="url(#glow-center)"/>
-        <circle cx="50" cy="50" r="4.5" fill="rgba(200,210,255,0.85)"/>
-        <circle cx="50" cy="50" r="2"   fill="#ffffff"/>
-        <!-- 斜め45度のクリスタル欠片 -->
-        <polygon points="50,28 52,34 50,32 48,34" fill="rgba(168,200,232,0.6)"/>
-        <polygon points="50,72 52,66 50,68 48,66" fill="rgba(168,200,232,0.6)"/>
-        <polygon points="28,50 34,48 32,50 34,52" fill="rgba(168,200,232,0.6)"/>
-        <polygon points="72,50 66,48 68,50 66,52" fill="rgba(168,200,232,0.6)"/>
-        <polygon points="28,28 31,33 29,31 27,33" fill="rgba(140,170,220,0.45)"/>
-        <polygon points="72,28 69,33 71,31 73,33" fill="rgba(140,170,220,0.45)"/>
-        <polygon points="28,72 31,67 29,69 27,67" fill="rgba(140,170,220,0.45)"/>
-        <polygon points="72,72 69,67 71,69 73,67" fill="rgba(140,170,220,0.45)"/>
-        <!-- 小さな散らばるクリスタル -->
-        <polygon points="18,20 19.5,24 18,22 16.5,24" fill="rgba(168,200,232,0.3)"/>
-        <polygon points="82,20 83.5,24 82,22 80.5,24" fill="rgba(168,200,232,0.3)"/>
-        <polygon points="18,80 19.5,76 18,78 16.5,76" fill="rgba(168,200,232,0.3)"/>
-        <polygon points="82,80 83.5,76 82,78 80.5,76"
-          fill="rgba(168,200,232,0.3)"/>
+<main class="shell">
+  <header class="top">
+    <div class="brand">
+      <div class="brand-name">LiLith Destiny</div>
+      <svg class="moon-mark" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+        <path d="M42.5 9.5C31 13 23.3 23.1 23.3 35.2c0 8.9 4.3 16.8 10.9 21.7C21.6 55.9 12 45.5 12 32.8 12 18.9 23.2 7.6 37 7.6c1.9 0 3.6.2 5.5.9Z" fill="#e9ddc7"/>
+        <path d="M46 21l2.8 6.2 6.2 2.8-6.2 2.8L46 39l-2.8-6.2L37 30l6.2-2.8L46 21Z" stroke="#f0a2b5" stroke-width="1.2"/>
       </svg>
     </div>
 
-    <div class="brand-name">Lilith &middot; Destiny</div>
+    <section class="hero">
+      <span class="eyebrow">無料診断 / 数秘とオラクル</span>
+      <h1>縁と魂の<br>恋愛リーディング</h1>
+      <p class="lead">苦しい恋には、理由がある。相手の気持ちが分からない夜も、連絡を待ち続けてしまう時間も、あなたが重いからではありません。</p>
+      <div class="pain-list" aria-label="よくある恋の悩み">
+        <div class="pain">相手の気持ちが分からない</div>
+        <div class="pain">連絡を待ち続けてしまう</div>
+        <div class="pain">曖昧な関係が終わらない</div>
+        <div class="pain">忘れたいのに忘れられない</div>
+      </div>
+    </section>
+  </header>
 
-    <div class="headline">
-      前世からの運命のズレを読み解き、<br>今の恋が動かない原因を診断します
-    </div>
-
-    <div style="margin: 14px 0 6px;">
-      <div style="display:inline-block; width:1px; height:28px; background:linear-gradient(to bottom, transparent, rgba(168,200,232,0.4), transparent);"></div>
-    </div>
-
-    <div class="sub-headline">
-      音信不通 &nbsp;/&nbsp; 複雑愛 &nbsp;/&nbsp; 復縁 &nbsp;/&nbsp; 繰り返す恋<br>
-      あなたが選ばれない理由、もう視えてる。
-    </div>
-  </div>
-
-  <div class="divider">
-    <div class="divider-line"></div>
-    <div class="divider-sym">✦</div>
-    <div class="divider-line"></div>
-  </div>
-
-  <!-- Step 1: LINE確認 -->
-  <div class="step active" id="step-line">
-    <div class="sec-label">前世と魂の石 &middot; 無料診断</div>
-    <div class="badge">✦ 人数限定・無料鑑定</div>
-
-    <div class="glass-card">
+  <section class="step active" id="step-form">
+    <div class="card">
       <div class="card-inner">
-        <div class="card-title">LINE登録は<br>お済みですか？</div>
-        <div class="card-sub">
-          診断結果と個別鑑定のご案内は<br>
-          LINEでお届けします。<br>
-          未登録の方は先にご登録ください。
+        <h2 class="section-title">今の恋に起きている<br>感情と縁の流れを読む</h2>
+        <p class="section-copy">誕生日から誕生数を出し、今の恋の苦しさ、相手との縁、3ヶ月の流れ、あなたが本当に求める愛の形を鑑定します。</p>
+
+        <div class="field">
+          <label for="birthdate">あなたの誕生日</label>
+          <input id="birthdate" type="date" required>
         </div>
-        <a class="btn-line" href="https://lin.ee/oYB9QfZ" target="_blank" rel="noopener">
-          <div class="btn-line-ico">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12 2C6.48 2 2 6.03 2 11c0 3.13 1.73 5.88 4.36 7.56L5.5 22l4.18-2.1c.75.2 1.53.1 2.32.1 5.52 0 10-4.03 10-9S17.52 2 12 2z" fill="rgba(180,40,60,0.85)"/>
-              <path d="M8 10.5h8M8 13.5h5" stroke="rgba(255,200,205,0.7)" stroke-width="1.4" stroke-linecap="round"/>
-            </svg>
-          </div>
-          まだの方はこちらで登録する
-        </a>
-        <div class="note">✦ 登録後、下のボタンから診断へ進めます</div>
+
+        <div class="field">
+          <label for="name">お名前またはニックネーム</label>
+          <input id="name" type="text" placeholder="例：リリス" autocomplete="name">
+        </div>
+
+        <div class="group-label">今の恋の状態</div>
+        <div class="choice-grid">
+          <label class="choice"><input type="radio" name="situation" value="unknown" checked><span>相手の気持ちが不明</span></label>
+          <label class="choice"><input type="radio" name="situation" value="waiting"><span>連絡を待っている</span></label>
+          <label class="choice"><input type="radio" name="situation" value="vague"><span>曖昧な関係</span></label>
+          <label class="choice"><input type="radio" name="situation" value="cannotForget"><span>忘れられない</span></label>
+        </div>
+
+        <div class="field">
+          <label for="memo">相談内容（任意）</label>
+          <textarea id="memo" placeholder="例：彼からの連絡が減って、関係が進まないまま不安です。"></textarea>
+        </div>
+
+        <button class="btn" type="button" id="readBtn">苦しい恋の理由を読み解く</button>
       </div>
     </div>
+  </section>
 
-    <button class="btn-ghost" onclick="showStep('step-input')">
-      <span>登録済み &middot; 診断へ進む →</span>
-    </button>
-  </div>
-
-  <!-- Step 2: Input -->
-  <div class="step" id="step-input">
-    <div class="sec-label">情報を入力する &middot; Reading</div>
-
-    <div class="field">
-      <label for="birthdate">あなたの生年月日</label>
-      <input type="date" id="birthdate">
-    </div>
-
-    <div class="field">
-      <label for="fullname">フルネーム（旧姓でも可）</label>
-      <input type="text" id="fullname" placeholder="例：山田 花子" autocomplete="off">
-    </div>
-
-    <button class="btn-ghost" id="btn-start">
-      <span>✦ 前世と魂の石を視る</span>
-    </button>
-  </div>
-
-  <!-- Step 3: Loading -->
-  <div class="step" id="step-loading">
-    <div class="loading-wrap">
-      <div class="sigil">
-        <svg viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="45" cy="45" r="41" stroke="rgba(140,120,255,0.28)" stroke-width="0.5" stroke-dasharray="4 7"/>
-          <circle cx="45" cy="45" r="28" stroke="rgba(120,90,220,0.45)" stroke-width="0.5"/>
-          <polygon points="45,8 79,63 11,63"  fill="none" stroke="rgba(168,200,232,0.25)" stroke-width="0.5"/>
-          <polygon points="45,82 11,27 79,27" fill="none" stroke="rgba(90,70,195,0.22)"  stroke-width="0.5"/>
-          <line x1="45" y1="18" x2="45" y2="72" stroke="rgba(168,200,232,0.22)" stroke-width="0.5"/>
-          <line x1="18" y1="45" x2="72" y2="45" stroke="rgba(168,200,232,0.22)" stroke-width="0.5"/>
-          <!-- クリスタル四方 -->
-          <polygon points="45,10 47,15 45,13 43,15" fill="rgba(168,200,232,0.5)"/>
-          <polygon points="45,80 47,75 45,77 43,75" fill="rgba(168,200,232,0.5)"/>
-          <polygon points="10,45 15,43 13,45 15,47" fill="rgba(168,200,232,0.5)"/>
-          <polygon points="80,45 75,43 77,45 75,47" fill="rgba(168,200,232,0.5)"/>
-          <circle cx="45" cy="45" r="5"   fill="rgba(90,70,195,0.58)"/>
-          <circle cx="45" cy="45" r="1.8" fill="rgba(210,230,255,0.95)"/>
+  <section class="step" id="step-loading">
+    <div class="loading">
+      <div>
+        <svg class="sigil" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+          <circle cx="50" cy="50" r="36" stroke="#f0a2b5" stroke-width="0.8"/>
+          <circle cx="50" cy="50" r="24" stroke="#b8a4ff" stroke-width="0.8" opacity="0.78"/>
+          <path d="M50 11l8.5 29 29 8.5-29 8.5L50 89l-8.5-32-29-8.5 29-8.5L50 11Z" stroke="#e9ddc7" stroke-width="0.9"/>
+          <path d="M34 50h32M50 34v32" stroke="#fff7fb" stroke-width="0.8" opacity="0.78"/>
         </svg>
-      </div>
-      <div class="loading-text">魂の記録を解読中<span class="dots"></span></div>
-    </div>
-  </div>
-
-  <!-- Step 4: Result -->
-  <div class="step" id="step-result">
-    <div id="result-content"></div>
-
-    <div class="next-step">
-      <div class="ns-inner">
-        <div class="next-tag">✦ Next Step &middot; 個別鑑定</div>
-        <div class="next-title">この縁、まだ終わってない。<br>続きはLINEで視せます。</div>
-        <div class="next-body">
-          診断では触れられなかった<br>
-          「その人との縁の本質」と「書き換えの具体的な一手」を<br>
-          個別鑑定でお伝えします。<br><br>
-          ご希望の方はLINEよりご連絡ください。
-        </div>
-        <a class="btn-cta" href="https://lin.ee/oYB9QfZ" target="_blank" rel="noopener">
-          LINEで個別鑑定を申し込む →
-        </a>
+        <p class="loading-text">Reading your bond<span class="dots"></span></p>
       </div>
     </div>
+  </section>
 
-    <button class="btn-reset" onclick="resetAll()">もう一度診断する</button>
-  </div>
-
-</div><!-- /container -->
+  <section class="step" id="step-result">
+    <div class="card">
+      <div class="card-inner">
+        <div id="result"></div>
+        <button class="reset" type="button" onclick="resetReading()">もう一度診断する</button>
+      </div>
+    </div>
+  </section>
+</main>
 
 <script>
 (function () {
-  'use strict';
+  "use strict";
 
-  /* ── Star canvas ── */
-  var canvas = document.getElementById('star-canvas');
-  var ctx    = canvas.getContext('2d');
-  var stars  = [];
-  function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-  resize();
-  window.addEventListener('resize', resize);
-  for (var i = 0; i < 140; i++) {
-    stars.push({
-      x: Math.random(), y: Math.random(),
-      r: Math.random() * 0.9 + 0.1,
-      a: Math.random() * 0.55 + 0.1,
-      phase: Math.random() * Math.PI * 2,
-      speed: Math.random() * 0.007 + 0.002,
-      blue: Math.random() > 0.3
+  var LINE_URL = "https://lin.ee/qHxuTbW";
+
+  var READINGS = {
+    1: {
+      title: "追うほど孤独になる恋",
+      reason: "あなたの恋が苦しい理由は、相手を待つ時間の中で「私が動かさなきゃ」という力みが強くなっているからです。愛されたい気持ちより、失いたくない怖さが前に出ています。",
+      bond: "今の縁は、主導権を取り戻す流れに入っています。相手を追って縁を強くするのではなく、あなた自身の選択を整えるほど関係の温度が見えやすくなります。",
+      partner: "相手はあなたの存在を軽く見ているわけではありません。ただ、今は自分のペースを守りたい気配が強く、真正面から感情を言葉にする余裕が少ない状態です。",
+      months: "1ヶ月目は焦りを鎮める時期。2ヶ月目に相手の反応や態度に小さな変化が出やすく、3ヶ月目はあなたが続けるか離れるかを冷静に選べる流れです。",
+      love: "あなたが本当に求めているのは、頑張って勝ち取る恋ではなく、対等に選び合える愛です。"
+    },
+    2: {
+      title: "待ち続けて心が薄くなる恋",
+      reason: "苦しさの理由は、相手の反応を待つほど自分の感情を後回しにしてしまうこと。優しさが強いぶん、相手の沈黙まで自分のせいにしやすくなっています。",
+      bond: "縁の流れは、依存ではなく調和へ向かっています。今は相手に合わせるほど不安が増えやすいので、自分の本音を静かに取り戻すことが大切です。",
+      partner: "相手は気持ちがないというより、関係をはっきりさせることに慎重です。あなたの優しさに甘えて、答えを先延ばしにしている可能性があります。",
+      months: "1ヶ月目は連絡頻度に揺れやすい時期。2ヶ月目に会話のきっかけ、3ヶ月目に関係の曖昧さを見直す場面が出てきます。",
+      love: "あなたが求めているのは、顔色を読む恋ではなく、安心して甘えられる愛です。"
+    },
+    3: {
+      title: "言えない本音が積もる恋",
+      reason: "この恋が苦しいのは、平気なふりをするほど本音が行き場を失っているからです。明るく振る舞う力があるぶん、寂しさを軽く扱ってしまいやすい魂です。",
+      bond: "縁は会話の質を変えるタイミングに来ています。相手を試す言葉ではなく、あなたの本音を短く素直に出すことで流れが変わります。",
+      partner: "相手はあなたの明るさに安心していますが、その奥にある不安までは読み取れていないようです。言わなくても分かってほしい状態は、今はすれ違いを生みます。",
+      months: "1ヶ月目は感情の整理。2ヶ月目は言葉にする勇気が必要。3ヶ月目には関係が進むか、あなたの中で答えがはっきりしやすくなります。",
+      love: "あなたが求めているのは、楽しさだけでつながる恋ではなく、弱さも見せられる愛です。"
+    },
+    4: {
+      title: "壊したくなくて動けない恋",
+      reason: "苦しさの理由は、関係を失わないために自分を固定してしまうこと。安定を求めるほど、変化を怖がり、曖昧なまま耐えやすくなっています。",
+      bond: "縁は現実確認の時期です。相手の言葉より行動を見ることで、この恋が安心へ向かう縁なのか、あなたを閉じ込める縁なのかが見えてきます。",
+      partner: "相手は大きな変化を起こすことに腰が重い状態です。気持ちはあっても、責任や現実的な事情から動きが鈍くなっている可能性があります。",
+      months: "1ヶ月目は停滞感。2ヶ月目は小さな約束が鍵。3ヶ月目はその約束が守られるかで、次の判断がしやすくなります。",
+      love: "あなたが求めているのは、不安定な刺激ではなく、毎日の中で信じられる愛です。"
+    },
+    5: {
+      title: "近づいては離れる恋",
+      reason: "この恋の苦しさは、自由でいたい気持ちと、確かな愛がほしい気持ちの間で揺れていることにあります。相手の曖昧さが、あなた自身の揺れも映しています。",
+      bond: "縁の流れは変化の前です。今は白黒を急ぐより、相手とあなたの距離感を見直すことで、本当に欲しい関係が浮かび上がります。",
+      partner: "相手はあなたに惹かれていても、関係を固定することには慎重です。楽しい時間には乗れるけれど、深い話から逃げやすい気配があります。",
+      months: "1ヶ月目は気持ちの波が大きめ。2ヶ月目に再接近の流れ。3ヶ月目は関係の名前をつけるか、自由な距離を選ぶかの分岐です。",
+      love: "あなたが求めているのは、束縛ではなく、自由でいても帰れる愛です。"
+    },
+    6: {
+      title: "尽くすほど満たされない恋",
+      reason: "苦しさの理由は、愛されるために相手へ与えすぎていること。あなたの優しさが、いつの間にか我慢の形になっているかもしれません。",
+      bond: "縁は受け取り直しの流れにあります。相手に何をしてあげるかより、あなたが何を受け取りたいのかを見つめるほど、恋の形が整います。",
+      partner: "相手はあなたの優しさに安心しています。ただ、その安心が当たり前になり、あなたの寂しさに気づけていない可能性があります。",
+      months: "1ヶ月目は我慢の限界に気づく時期。2ヶ月目は望みを伝える場面。3ヶ月目は相手が応えるかどうかで縁の質が見えます。",
+      love: "あなたが求めているのは、尽くしてつなぐ恋ではなく、大切にされていると実感できる愛です。"
+    },
+    7: {
+      title: "考えすぎて眠れない恋",
+      reason: "この恋が苦しいのは、相手の一言や沈黙の奥まで読もうとして、心が休まらないからです。直感が鋭いぶん、不安も深く掘り下げてしまいます。",
+      bond: "縁は沈黙の意味を見極める時期です。相手の気持ちを読み続けるより、事実として何が起きているかを見ることで流れが整います。",
+      partner: "相手は感情を簡単に見せないタイプか、今は自分の問題に意識が向いています。あなたに見せていない領域があるため、不透明さが残ります。",
+      months: "1ヶ月目は情報不足で不安が強め。2ヶ月目に真意を確認する機会。3ヶ月目には直感と現実の答えが重なりやすくなります。",
+      love: "あなたが求めているのは、疑い続ける恋ではなく、静かに信頼できる愛です。"
+    },
+    8: {
+      title: "主導権を失うのが怖い恋",
+      reason: "苦しさの理由は、強くいようとするほど本当の不安を隠してしまうこと。相手に振り回されている自分を認めたくなくて、心が硬くなっています。",
+      bond: "縁は力関係の調整に入っています。どちらが優位かではなく、どちらも本音を出せる関係かを見直すタイミングです。",
+      partner: "相手はあなたの強さに惹かれていますが、同時に近づきにくさも感じています。弱さを見せることで、相手の態度が変わる余地があります。",
+      months: "1ヶ月目は意地がぶつかりやすい時期。2ヶ月目に本音の会話。3ヶ月目には関係を進める条件が見えてきます。",
+      love: "あなたが求めているのは、駆け引きで勝つ恋ではなく、心を預けても尊重される愛です。"
+    },
+    9: {
+      title: "終わらせられない恋",
+      reason: "この恋が苦しいのは、過去の思い出や相手への情が深く、終わりを受け入れることを裏切りのように感じているからです。",
+      bond: "縁は完了と再生の流れにあります。続けるにしても離れるにしても、過去の痛みを抱えたままではなく、今のあなたの幸せを基準に選ぶ時期です。",
+      partner: "相手はあなたの優しさを覚えています。ただ、今の現実が同じ方向を向いているかは別問題です。情と未来を分けて見る必要があります。",
+      months: "1ヶ月目は未練が揺れやすい時期。2ヶ月目に過去を振り返る出来事。3ヶ月目には新しい選択へ気持ちが向き始めます。",
+      love: "あなたが求めているのは、痛みに耐える恋ではなく、心がほどけていく愛です。"
+    },
+    11: {
+      title: "魂で反応してしまう恋",
+      reason: "この恋が苦しいのは、理屈ではなく魂が強く反応しているからです。相手の存在が、あなたの中の古い傷や願いを一気に浮かび上がらせています。",
+      bond: "縁は気づきの流れにあります。相手と結ばれるかどうかだけでなく、この恋を通してあなたが何に目覚めるかが重要です。",
+      partner: "相手もあなたに特別な印象を持っている可能性があります。ただし、その強さに戸惑い、距離を取っている気配もあります。",
+      months: "1ヶ月目は感情が増幅しやすい時期。2ヶ月目に直感的なサイン。3ヶ月目には縁の意味を深く知りたくなる流れです。",
+      love: "あなたが求めているのは、魂が震えるだけの恋ではなく、現実でも安心できる愛です。"
+    },
+    22: {
+      title: "未来まで背負ってしまう恋",
+      reason: "苦しさの理由は、この恋の可能性を大きく見すぎて、今の相手の状態を見落としやすいこと。理想の未来と現実の温度差が痛みになっています。",
+      bond: "縁は理想と現実をつなぎ直す時期です。未来を想像する前に、今の相手がどこまで向き合えるかを確認すると流れが整います。",
+      partner: "相手には気持ちや関心があっても、あなたが思うほど未来を具体的に考えられていないかもしれません。現実的な会話が鍵になります。",
+      months: "1ヶ月目は期待の整理。2ヶ月目は現実的な確認。3ヶ月目にはこの恋を育てる条件がはっきりしてきます。",
+      love: "あなたが求めているのは、理想だけで支える恋ではなく、ふたりで形にできる愛です。"
+    },
+    33: {
+      title: "救いたくなる恋",
+      reason: "この恋が苦しいのは、相手の弱さや寂しさまで抱きしめようとしているからです。愛が深いぶん、自分の痛みを後回しにしやすくなっています。",
+      bond: "縁は自己犠牲をほどく流れにあります。相手を救うことと、あなたが幸せになることを混同しないほど、本当の愛の形が見えます。",
+      partner: "相手はあなたの包容力に惹かれています。ただ、その優しさに寄りかかりすぎると、関係のバランスが崩れやすくなります。",
+      months: "1ヶ月目は相手優先の癖に気づく時期。2ヶ月目に境界線を引く場面。3ヶ月目には愛し方そのものが変わり始めます。",
+      love: "あなたが求めているのは、救うことでつながる恋ではなく、あなた自身も救われる愛です。"
+    }
+  };
+
+  var ORACLES = [
+    { name: "月の沈黙", text: "今は答えを急ぐより、相手の沈黙で揺れる自分の本音を見る時です。" },
+    { name: "ほどける赤い糸", text: "縁は切るか結ぶかだけではありません。整えることで、自然に流れが変わります。" },
+    { name: "夜明け前の手紙", text: "連絡の有無より、あなたが何を待っているのかを見つめる時です。" },
+    { name: "魂の鏡", text: "相手への執着に見えるものは、あなた自身が愛されたい場所を映しています。" },
+    { name: "閉じた扉", text: "動かない関係には、今は入ってはいけない領域があるというサインも含まれます。" },
+    { name: "やわらかな境界線", text: "愛することと、我慢し続けることは同じではありません。" }
+  ];
+
+  var SITUATION_COPY = {
+    unknown: "相手の本音を知りたい気持ちが強い今、必要なのは答えを当てることより、相手の態度に振り回されない軸を取り戻すことです。",
+    waiting: "連絡を待つ時間が長いほど、心は相手中心に傾きます。今は待つ恋から、自分を整える恋へ戻る合図です。",
+    vague: "曖昧な関係が続くと、希望と不安が同時に育ちます。関係の名前より、あなたが安心できているかを見てください。",
+    cannotForget: "忘れられない恋は、まだ終わっていない縁ではなく、まだ癒えていない感情を知らせていることがあります。"
+  };
+
+  function reduceNumber(num) {
+    while (num > 9 && num !== 11 && num !== 22 && num !== 33) {
+      num = String(num).split("").reduce(function (sum, digit) {
+        return sum + Number(digit);
+      }, 0);
+    }
+    return num || 9;
+  }
+
+  function calcBirthNumber(dateValue) {
+    var total = dateValue.replace(/\D/g, "").split("").reduce(function (sum, digit) {
+      return sum + Number(digit);
+    }, 0);
+    return reduceNumber(total);
+  }
+
+  function showStep(id) {
+    document.querySelectorAll(".step").forEach(function (step) {
+      step.classList.remove("active");
+    });
+    document.getElementById(id).classList.add("active");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function escapeHTML(value) {
+    return String(value).replace(/[&<>"']/g, function (ch) {
+      return ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[ch];
     });
   }
-  function drawStars(t) {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    stars.forEach(function(s) {
-      var a = s.a * (0.5 + 0.5 * Math.sin(t * s.speed + s.phase));
-      ctx.beginPath();
-      ctx.arc(s.x * canvas.width, s.y * canvas.height, s.r, 0, Math.PI * 2);
-      ctx.fillStyle = s.blue
-        ? 'rgba(140,120,255,' + a + ')'
-        : 'rgba(180,160,255,' + a + ')';
-      ctx.fill();
-    });
-    requestAnimationFrame(drawStars);
+
+  function selectedSituation() {
+    var checked = document.querySelector('input[name="situation"]:checked');
+    return checked ? checked.value : "unknown";
   }
-  requestAnimationFrame(drawStars);
 
-  /* ── Crystal shard particles ── */
-  (function spawnCrystals() {
-    var container = document.getElementById('crystals');
-    var shardPaths = [
-      /* 縦長クリスタル */
-      'M6,0 L10,8 L8,20 L6,24 L4,20 L2,8 Z',
-      /* 六角形クリスタル */
-      'M8,0 L16,4 L16,12 L8,16 L0,12 L0,4 Z',
-      /* 細長い菱形 */
-      'M5,0 L10,6 L5,22 L0,6 Z',
-      /* 小さな欠片 */
-      'M4,0 L8,5 L6,12 L4,14 L2,12 L0,5 Z'
-    ];
+  function oracleIcon() {
+    return '<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">' +
+      '<path d="M34 8c-8 3.5-13 11-13 20.5 0 10.5 7.4 19.5 17.2 21.7C24.4 51.4 13 40.6 13 26.8 13 14.6 22.7 4.9 34 8Z" fill="#e9ddc7"/>' +
+      '<path d="M44 21l2.4 5.2L52 28.6l-5.6 2.4L44 36l-2.4-5-5.6-2.4 5.6-2.4L44 21Z" stroke="#fff7fb" stroke-width="1.1"/>' +
+      '</svg>';
+  }
 
-    for (var i = 0; i < 22; i++) {
-      var wrap = document.createElement('div');
-      wrap.className = 'shard';
-      var sz = Math.random() * 16 + 6;
-      var path = shardPaths[Math.floor(Math.random() * shardPaths.length)];
-      var opacity = Math.random() * 0.35 + 0.1;
-      var dur  = Math.random() * 22 + 16;
-      var del  = Math.random() * 24;
-      var left = Math.random() * 100;
-      var blur = Math.random() > 0.6 ? 1 : 0;
+  function startReading() {
+    var birthdate = document.getElementById("birthdate").value;
+    var name = document.getElementById("name").value.trim() || "あなた";
+    var situation = selectedSituation();
 
-      wrap.style.cssText = [
-        'left:'               + left + '%',
-        'width:'              + sz + 'px',
-        'height:'             + (sz * 2.2) + 'px',
-        'animation-duration:' + dur + 's',
-        'animation-delay:'    + del + 's',
-        'filter: blur('       + blur + 'px)'
-      ].join(';');
-
-      var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-      svg.setAttribute('viewBox', '0 0 16 28');
-      svg.setAttribute('fill', 'none');
-
-      var pathEl = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-      pathEl.setAttribute('d', path);
-      var colors=['rgba(160,140,255,','rgba(140,180,255,','rgba(180,160,255,','rgba(120,160,240,'];
-      pathEl.setAttribute('fill', colors[Math.floor(Math.random()*colors.length)] + opacity + ')');
-      pathEl.setAttribute('stroke', 'rgba(180,170,255,0.4)');
-      pathEl.setAttribute('stroke-width', '0.5');
-
-      /* 内部のハイライト */
-      var highlight = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-      highlight.setAttribute('x1', '5'); highlight.setAttribute('y1', '2');
-      highlight.setAttribute('x2', '7'); highlight.setAttribute('y2', '10');
-      highlight.setAttribute('stroke', 'rgba(220,215,255,0.45)');
-      highlight.setAttribute('stroke-width', '0.5');
-
-      svg.appendChild(pathEl);
-      svg.appendChild(highlight);
-      wrap.appendChild(svg);
-      container.appendChild(wrap);
+    if (!birthdate) {
+      alert("誕生日を入力してください。");
+      return;
     }
-  })();
 
-  /* ── Data ── */
-  var BIRTH = {
-    1:  { title:'孤高の先駆者',               kw:'支配と孤独の間で揺れる魂',   body:'あなたの魂は「先頭に立つ者」の使命を持って生まれました。しかし前世では、その強さゆえに愛する人を置いて進み続け、深い孤独と後悔を刻みました。今世でも同じパターンが繰り返されています。' },
-    2:  { title:'捧げすぎた愛の記憶',         kw:'境界線を失った魂',           body:'前世のあなたは「与え続けることが愛」だと信じていました。その記憶が今世に持ち越され、あなたは無意識に相手に尽くし、選ばれることを待ち続けています。' },
-    3:  { title:'語れなかった言葉',           kw:'表現と沈黙の魂',             body:'前世で、あなたには言いたいことがたくさんありました。しかしその言葉は封じられ、伝えられないまま終わりました。今世での「伝わらない」感覚の根はここにあります。' },
-    4:  { title:'崩れゆく砦を守った者',       kw:'執着と責任の魂',             body:'前世のあなたは、守るべきものを最後まで手放せませんでした。その「手放せない」記憶が今世の執着として現れ、縁が切れるべき時にも切れない縁を作り続けています。' },
-    5:  { title:'自由を求めて逃げ続けた魂',   kw:'漂流と渇望の記憶',           body:'前世のあなたは、どこにいても「ここではない」という感覚と共に生きていました。その自由への渇望が今世では「定まらない縁」「消えていく人」として現れています。' },
-    6:  { title:'美と完璧に縛られた聖女',     kw:'理想と犠牲の魂',             body:'前世のあなたは、誰かのために美しくあり続けることを求められました。その「完璧でないと愛されない」という刷り込みが、今世での恋愛の苦しさの核心にあります。' },
-    7:  { title:'真実を見すぎた孤独者',       kw:'洞察と疎外の魂',             body:'前世のあなたは、人の本質を見通す力を持っていました。しかしその力ゆえに孤立し、愛から遠ざかりました。今世でも「深く見えすぎる」あなたは、普通の愛し方がわからなくなっています。' },
-    8:  { title:'力と愛の間で引き裂かれた者', kw:'支配と服従の魂',             body:'前世のあなたは権力の中心にいました。愛か力か、常に選択を迫られ、愛を犠牲にした記憶があります。今世での「選ばれない」感覚の根は、あなた自身が愛を後回しにしてきたことへの魂の記憶です。' },
-    9:  { title:'すべてを知る最後の魂',       kw:'完成と手放しの記憶',         body:'あなたの魂は多くの転生を経て、この9という完成数に至りました。前世では、すべてを悟りながら、最後に手放すことができなかった何かがあります。その未完の想いが今世の縁のカルマを作っています。' },
-    11: { title:'光の預言者',                 kw:'使命と孤独の魂',             body:'マスターナンバー11。あなたの魂は次元が違います。前世では霊的指導者として多くの人を導きながら、自分自身の愛を生きることができませんでした。その記憶が今世の「特別なのに選ばれない」感覚の正体です。' },
-    22: { title:'世界を建てた建築家',         kw:'理想と現実の魂',             body:'マスターナンバー22。壮大なビジョンと共に生まれた魂。前世では大きなものを作り上げながら、最も近くにいる人との小さな愛を見失いました。今世での「近くにいるのに遠い」という縁の感覚はここから来ています。' },
-    33: { title:'愛の化身',                   kw:'無条件の愛と自己犠牲の魂',   body:'マスターナンバー33。あなたは愛そのものです。しかしその純粋さゆえに、前世では自分を犠牲にし続けました。今世でも同じパターンが続いているなら、それは魂が「自分を愛すること」を学ぶためのカルマです。' }
-  };
+    showStep("step-loading");
 
-  var DESTINY = {
-    1:  { stone:'ガーネット',         c1:'#6B1A1A', c2:'#C43030', desc:'孤高の将軍が持ち越した「強さの孤独」を癒やす石。戦い続けた前世の傷を溶かし、愛の中で強くあることを今世のあなたに許可します。' },
-    2:  { stone:'ムーンストーン',     c1:'#3A3A6A', c2:'#8A8ACA', desc:'待ち続けた魂に「自ら動く」勇気を与える石。前世で届かなかった想いを浄化し、境界線を持った深い愛へと導きます。' },
-    3:  { stone:'シトリン',           c1:'#7A5A10', c2:'#C49A28', desc:'封じられた言葉を解き放つ石。詩人として声を奪われた前世の記憶を手放し、あなたの言葉が正しく届く縁を引き寄せます。' },
-    4:  { stone:'ブラックトルマリン', c1:'#1A1A3E', c2:'#4A4A8E', desc:'城を守り続けた前世の執着を浄化する石。「手放せない」というカルマのブロックを外し、新しい縁が入る空白を作ります。' },
-    5:  { stone:'アクアマリン',       c1:'#0A4A5E', c2:'#2A8AA0', desc:'漂い続けた魂に「ここに留まる」安心感を与える石。自由という名の孤独を終わらせ、定まる縁と愛を引き寄せます。' },
-    6:  { stone:'ローズクォーツ',     c1:'#7A2A4A', c2:'#C46080', desc:'美しさを強いられた前世の記憶を溶かす石。「完璧でなければ愛されない」という刷り込みを手放し、今のあなたが愛されることを許可します。' },
-    7:  { stone:'アメジスト',         c1:'#4A1A6A', c2:'#8A4AAA', desc:'見えすぎた巫女の孤独を統合する石。信じてもらえなかった前世の痛みを癒やし、あなたの洞察力を愛される才能へと変換します。' },
-    8:  { stone:'オブシディアン',     c1:'#181010', c2:'#5A3A3A', desc:'権力と愛の間で引き裂かれた前世を統合する石。「強くなるほど選ばれない」という記憶を書き換え、力と愛が共存できる縁を開きます。' },
-    9:  { stone:'ラピスラズリ',       c1:'#0A1A5E', c2:'#2A4AAA', desc:'すべてを知る神官が手放せなかった執着を解放する石。多くの転生の記憶を整理し、今世で本当の意味で縁を完結させる力を与えます。' },
-    11: { stone:'セレナイト',         c1:'#2A2A4A', c2:'#9090C0', desc:'光を視た修道女の孤独を癒やす石。「特別すぎて選ばれない」という痛みを浄化し、あなたの霊的な感受性を愛の力に変えます。' },
-    22: { stone:'フローライト',       c1:'#0A3A2A', c2:'#3A9A7A', desc:'神殿を建てた女祭司長が見落とした「目の前の愛」を取り戻す石。壮大な使命と小さな愛を両立させる統合の力を持ちます。' },
-    33: { stone:'ロードナイト',       c1:'#5A1A2A', c2:'#C05070', desc:'愛を説きながら自分を愛せなかった聖女の魂に捧げる石。与え続けた前世のカルマを終わらせ、受け取ることを魂に許可します。' }
-  };
+    setTimeout(function () {
+      var number = calcBirthNumber(birthdate);
+      var reading = READINGS[number] || READINGS[9];
+      var oracle = ORACLES[(number + situation.length) % ORACLES.length];
+      var lineText = encodeURIComponent("無料鑑定希望：" + name + " / 誕生数" + number + " / " + reading.title);
 
-  var PAST_LIVES = {
-    1:  { era:'古代ローマ · 1世紀',         title:'孤高の将軍',                   body:'あなたは戦場で誰よりも強く、誰よりも孤独でした。勝利の度に愛する者から遠ざかり、最後は誰にも看取られずに逝きました。今世の「強くあろうとするほど愛が遠のく」感覚は、この前世の記憶が刻んだものです。' },
-    2:  { era:'平安時代 · 日本',             title:'誰かを待ち続けた女房',         body:'あなたは来ない人をひたすら待ち続けました。几帳の向こうで書き続けた文は、ついに届かなかった。今世の「尽くしても報われない」縁のパターンは、この魂の記憶が繰り返しているものです。' },
-    3:  { era:'ルネサンス期 · イタリア',     title:'声を封じられた詩人',           body:'あなたには世界を変えるほどの言葉がありました。しかし時代と権力がその声を奪いました。伝えられなかった詩は魂の深部に沈み、今世の「言葉が届かない」感覚として蘇っています。' },
-    4:  { era:'中世ヨーロッパ · 12世紀',    title:'城を守り続けた番人',           body:'あなたは最後の一人になっても城を離れませんでした。守るべきものへの執着が魂に刻まれ、今世では「手放せない縁」「終わらせられない関係」として繰り返されています。' },
-    5:  { era:'大航海時代 · 16世紀',        title:'港を持たなかった船乗り',       body:'あなたはどの港にも根を下ろさず、愛した人を幾人も波の向こうに置いてきました。「自由」と呼んでいたものは孤独の別名でした。今世での「定まらない縁」はその記憶の続きです。' },
-    6:  { era:'ビクトリア朝 · イギリス',     title:'美しさを強いられた貴婦人',     body:'あなたは完璧であることを求められ続けました。本当の感情を隠して微笑み続けた日々が魂に刻まれ、今世での「素のままでは愛されない」という恐れとして残っています。' },
-    7:  { era:'古代ギリシャ · 紀元前',       title:'信じてもらえなかった予言の巫女', body:'あなたは真実を視る力を持っていました。しかし誰もあなたの言葉を信じませんでした。見えすぎることへの孤独が魂に深く刻まれ、今世の「わかっているのに伝わらない」という感覚の根になっています。' },
-    8:  { era:'古代中国 · 漢王朝',           title:'権力の頂に立った后',           body:'あなたは権力のすべてを手にしましたが、心から愛した人とは結ばれませんでした。力を得るたびに愛が遠ざかるという記憶が今世まで持ち越され、「強くなるほど選ばれない」感覚を作り出しています。' },
-    9:  { era:'古代エジプト · 紀元前',       title:'すべてを知る神官',             body:'あなたは死と再生の秘儀を司り、魂の行方を見届ける者でした。あらゆる真理を知りながら、自分自身の愛だけは手放すことができなかった。その未完の執着が今世のカルマとして引き継がれています。' },
-    11: { era:'中世ヨーロッパ · 13世紀',    title:'光を視た修道女',               body:'あなたは神の声を聴き、奇跡を起こすと言われました。しかしその力ゆえに人から恐れられ、深く愛することを自ら禁じました。「特別すぎて選ばれない」という今世の孤独は、この前世から続く魂の痛みです。' },
-    22: { era:'古代メソポタミア · 紀元前',   title:'神殿を建てた女祭司長',         body:'あなたは神と民の間に立ち、壮大な神殿を建て上げました。しかしその使命の重さゆえ、最も近くにいた人の愛を見落としました。「大切なものを後回しにしてしまう」今世のパターンはここから来ています。' },
-    33: { era:'古代インド · 紀元前',         title:'愛を説いた聖女',               body:'あなたはすべての人に愛を与え、慈悲の化身と呼ばれました。しかし自分自身が愛されることを、最後まで許可できませんでした。今世で「与えるほど消耗する」感覚があるなら、それはこの記憶が続いているサインです。' }
-  };
+      document.getElementById("result").innerHTML =
+        '<div class="result-head">' +
+        '<span class="tag">Birth Number / ' + number + '</span>' +
+        '<div class="number-row"><div><h2 class="section-title">' + escapeHTML(name) + 'さんの恋の流れ</h2><p class="section-copy">誕生日から出した誕生数は ' + number + '。今の恋には、次のような感情と縁の流れが見えています。</p></div><div class="big-number">' + number + '</div></div>' +
+        '</div>' +
+        '<div class="oracle"><div class="oracle-card">' + oracleIcon() + '</div><div class="oracle-text"><strong>Oracle：' + escapeHTML(oracle.name) + '</strong><span>' + escapeHTML(oracle.text) + '</span></div></div>' +
+        '<div class="reading-grid">' +
+        '<section class="reading"><h3>なぜこの恋が苦しいのか</h3><p>' + escapeHTML(reading.reason) + '</p></section>' +
+        '<section class="reading"><h3>相手との縁に今何が起きているのか</h3><p>' + escapeHTML(reading.bond) + '</p></section>' +
+        '<section class="reading"><h3>相手の本音や現状</h3><p>' + escapeHTML(reading.partner) + '</p></section>' +
+        '<section class="reading"><h3>今後3ヶ月の流れ</h3><p>' + escapeHTML(reading.months) + '</p></section>' +
+        '<section class="reading"><h3>あなたが本当に求める愛の形</h3><p>' + escapeHTML(reading.love) + '</p></section>' +
+        '<section class="reading"><h3>今の状況からのメッセージ</h3><p>' + escapeHTML(SITUATION_COPY[situation]) + '</p></section>' +
+        '</div>' +
+        '<div class="line-box"><div class="limited-badge">一日5名限定</div><h3>詳しい個別鑑定で、彼との縁をさらに深く読む</h3><p>ここに出た結果は、あなたの恋に流れているサインの一部です。相手の本音、今動くべきか待つべきか、ふたりの縁がこの先どこへ向かうのかまで知りたい方は、公式LINEで個別に読み解きます。</p><div class="reading"><h3>無料鑑定の受け方</h3><p>ボタンから公式LINEを追加し、トーク画面で「無料鑑定希望」と送ってください。診断結果をもとに、今の恋の流れを個別にお届けします。</p></div><a class="btn line-btn" href="' + LINE_URL + '?text=' + lineText + '" target="_blank" rel="noopener">公式LINEで個別鑑定を受け取る</a></div>';
 
-  var SHIFTS = {
-    1:  ['一人で抱えることが「強さ」だという前世の記憶を手放す', '愛されることへの警戒を解き、受け取る練習をする', '先頭に立ちながら、隣に人を置くことを許可する'],
-    2:  ['相手に尽くすことで価値を証明しようとするパターン', '「NO」と言えない魂の記憶から自分を解放する', '選ばれることを待つのではなく、自分が選ぶ側に立つ'],
-    3:  ['伝えたいことを飲み込む前世の習慣を断ち切る', '笑顔の裏に隠した本音を、少しずつ言語化する', '「伝わらない」を諦めるのではなく、伝え方を変える'],
-    4:  ['手放せない執着が縁をブロックしていることに気づく', '「守らなければ」という強迫から愛を切り離す', '終わりを受け入れることが、新しい縁への扉になる'],
-    5:  ['「ここではない」という感覚に乗り続けることをやめる', '不安定さを魅力にしてきたパターンを手放す', '一つの縁に「留まる勇気」を持つことが今世の課題'],
-    6:  ['完璧なあなたでないと愛されないという刷り込みを解く', '弱さを見せることが、本物の縁を引き寄せる鍵', '他者の期待に応え続ける前世のパターンを今世で終わらせる'],
-    7:  ['見えすぎることで距離を置いてきた孤独のパターン', '分析より感覚を、観察より体験を選ぶ瞬間を作る', '信じることの脆弱さを、今世では強さとして扱う'],
-    8:  ['力を持つほど愛から遠ざかるという誤った記憶', '与える側ではなく、受け取る側の体験をする', 'コントロールを手放すことが縁の書き換えの始まり'],
-    9:  ['すべてを悟ったふりで感情を切り離すパターン', '終わりを急がず、今この縁の中に留まる練習', '手放すことと諦めることの違いを魂で学ぶ'],
-    11: ['使命と個人の愛の間で引き裂かれるパターン', '光を与え続けながら、自分も満たされることを許可する', '特別であることへの孤独感を、今世では解消する'],
-    22: ['大きなものを作ろうとして、目の前の縁を見失うパターン', '理想の愛を探すより、今ここにある愛を育てる', '現実と理想の橋渡しを、愛においても実践する'],
-    33: ['愛することと、自分を失うことを混同するパターン', '無条件の愛は、まず自分自身に向けることから始まる', '他者を救おうとする前に、あなた自身の傷を見る']
-  };
-
-  /* ── Numerology ── */
-  function calcBirth(str) {
-    var n = str.replace(/-/g,'').split('').reduce(function(a,b){return a+Number(b);},0);
-    while (n > 9 && n !== 11 && n !== 22 && n !== 33)
-      n = String(n).split('').reduce(function(a,b){return a+Number(b);},0);
-    return n;
+      showStep("step-result");
+    }, 900);
   }
 
-  function calcDestiny(name) {
-    var am = {A:1,B:2,C:3,D:4,E:5,F:6,G:7,H:8,I:9,J:1,K:2,L:3,M:4,N:5,O:6,P:7,Q:8,R:9,S:1,T:2,U:3,V:4,W:5,X:6,Y:7,Z:8};
-    var jm = {'あ':1,'い':1,'う':6,'え':5,'お':6,'か':2,'き':1,'く':2,'け':5,'こ':6,'さ':3,'し':3,'す':3,'せ':3,'そ':3,'た':4,'ち':4,'つ':4,'て':4,'と':4,'な':5,'に':5,'ぬ':5,'ね':5,'の':5,'は':8,'ひ':1,'ふ':8,'へ':5,'ほ':8,'ま':4,'み':4,'む':3,'め':5,'も':4,'や':1,'ゆ':3,'よ':6,'ら':2,'り':2,'る':2,'れ':2,'ろ':2,'わ':6,'ん':5,'ア':1,'イ':1,'ウ':6,'エ':5,'オ':6,'カ':2,'キ':1,'ク':2,'ケ':5,'コ':6,'サ':3,'シ':3,'ス':3,'セ':3,'ソ':3,'タ':4,'チ':4,'ツ':4,'テ':4,'ト':4,'ナ':5,'ニ':5,'ヌ':5,'ネ':5,'ノ':5,'ハ':8,'ヒ':1,'フ':8,'ヘ':5,'ホ':8,'マ':4,'ミ':4,'ム':3,'メ':5,'モ':4,'ヤ':1,'ユ':3,'ヨ':6,'ラ':2,'リ':2,'ル':2,'レ':2,'ロ':2,'ワ':6,'ン':5};
-    var t = 0, up = name.toUpperCase();
-    for (var i = 0; i < up.length; i++) {
-      var c = up[i];
-      if (am[c]) t += am[c];
-      else if (jm[c]) t += jm[c];
+  function drawStars() {
+    var canvas = document.getElementById("stars");
+    var ctx = canvas.getContext("2d");
+    var stars = [];
+
+    function resize() {
+      var ratio = window.devicePixelRatio || 1;
+      canvas.width = Math.floor(window.innerWidth * ratio);
+      canvas.height = Math.floor(window.innerHeight * ratio);
+      canvas.style.width = window.innerWidth + "px";
+      canvas.style.height = window.innerHeight + "px";
+      ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+      stars = Array.from({ length: 90 }, function () {
+        return {
+          x: Math.random() * window.innerWidth,
+          y: Math.random() * window.innerHeight,
+          r: Math.random() * 1.15 + 0.25,
+          a: Math.random() * Math.PI * 2,
+          s: Math.random() * 0.018 + 0.006
+        };
+      });
     }
-    if (!t) t = ((name.length * 7) % 9) + 1;
-    while (t > 9 && t !== 11 && t !== 22 && t !== 33)
-      t = String(t).split('').reduce(function(a,b){return a+Number(b);},0);
-    return t;
-  }
 
-  /* ── Gem SVG ── */
-  function gemSVG(c1, c2) {
-    return '<svg viewBox="0 0 58 58" fill="none" xmlns="http://www.w3.org/2000/svg">'
-      + '<polygon points="29,4 53,19 53,39 29,54 5,39 5,19" fill="' + c1 + '" fill-opacity="0.75" stroke="' + c2 + '" stroke-width="0.5"/>'
-      + '<polygon points="29,4 53,19 29,29" fill="' + c2 + '" fill-opacity="0.25"/>'
-      + '<polygon points="29,4 5,19 29,29"  fill="' + c1 + '" fill-opacity="0.38"/>'
-      + '<polygon points="29,54 53,39 29,29" fill="' + c1 + '" fill-opacity="0.28"/>'
-      + '<polygon points="29,54 5,39 29,29"  fill="' + c2 + '" fill-opacity="0.14"/>'
-      + '<polygon points="29,4 53,19 53,39 29,54 5,39 5,19" fill="none" stroke="' + c2 + '" stroke-width="0.5" stroke-opacity="0.7"/>'
-      + '<line x1="29" y1="8" x2="38" y2="22" stroke="rgba(255,255,255,0.18)" stroke-width="0.5"/>'
-      + '</svg>';
-  }
-
-  /* ── Navigation ── */
-  (function setMaxDate() {
-    var d = new Date();
-    d.setFullYear(d.getFullYear() - 18);
-    var y = d.getFullYear();
-    var m = String(d.getMonth() + 1).padStart(2, '0');
-    var day = String(d.getDate()).padStart(2, '0');
-    var el = document.getElementById('birthdate');
-    if (el) el.setAttribute('max', y + '-' + m + '-' + day);
-  })();
-
-  window.showStep = function(id) {
-    document.querySelectorAll('.step').forEach(function(s) { s.classList.remove('active'); });
-    document.getElementById(id).classList.add('active');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  window.startReading = function() {
-    try {
-      var bd = document.getElementById('birthdate').value;
-      var fn = document.getElementById('fullname').value.trim();
-      if (!bd || !fn) { alert('生年月日とフルネームをご入力ください。'); return; }
-
-      window.showStep('step-loading');
-
-      setTimeout(function() {
-        try {
-          var bn  = calcBirth(bd);
-          var dn  = calcDestiny(fn);
-          var bm  = BIRTH[bn]    || BIRTH[9];
-          var dm  = DESTINY[bn]  || DESTINY[9];
-          var pl  = PAST_LIVES[bn] || PAST_LIVES[9];
-          var sh  = SHIFTS[bn]   || SHIFTS[9];
-
-      document.getElementById('result-content').innerHTML =
-        '<div class="sec-label">誕生数 ' + bn + ' &middot; 魂の使命</div>'
-        + '<div class="result-card"><div class="rc-inner">'
-        + '<div class="big-num">' + bn + '</div>'
-        + '<div class="num-label">誕生数 &middot; Life Path</div>'
-        + '<div class="result-title">' + bm.title + '</div>'
-        + '<div class="keyword-tag">' + bm.kw + '</div>'
-        + '<div class="result-body">' + bm.body + '</div>'
-        + '</div></div>'
-
-        + '<div class="sec-label" style="margin-top:24px">前世の記憶 &middot; Past Life</div>'
-        + '<div class="past-life-card"><div class="plc-inner">'
-        + '<div class="era-tag">✦ ' + pl.era + '</div>'
-        + '<div class="past-title">' + pl.title + '</div>'
-        + '<div class="past-body">' + pl.body + '</div>'
-        + '</div></div>'
-
-        + '<div class="sec-label" style="margin-top:24px">魂の石 &middot; Soul Stone</div>'
-        + '<div class="stone-card"><div class="sc-inner">'
-        + '<div class="gem-wrap">' + gemSVG(dm.c1, dm.c2) + '</div>'
-        + '<div><div class="stone-name">' + dm.stone + '</div>'
-        + '<div class="stone-prop">誕生数 ' + bn + ' &middot; Soul Stone</div>'
-        + '<div class="stone-desc">' + dm.desc + '</div></div>'
-        + '</div></div>'
-
-        + '<div class="sec-label" style="margin-top:24px">運命のズレと書き換え &middot; Shift</div>'
-        + '<div class="shift-card"><div class="shc-inner">'
-        + '<div class="shift-title">今世で書き換えるべき<br>カルマのパターン</div>'
-        + '<ul class="shift-list">'
-        + sh.map(function(s) { return '<li>' + s + '</li>'; }).join('')
-        + '</ul></div></div>';
-
-          window.showStep('step-result');
-        } catch(e) {
-          console.error('Reading error:', e);
-          alert('読み込みに失敗しました。ページを再読み込みしてお試しください。');
-          window.showStep('step-input');
-        }
-      }, 3200);
-    } catch(e) {
-      console.error('startReading error:', e);
+    function tick() {
+      ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+      stars.forEach(function (star) {
+        star.a += star.s;
+        var alpha = 0.18 + Math.abs(Math.sin(star.a)) * 0.62;
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(255,239,246," + alpha + ")";
+        ctx.fill();
+      });
+      requestAnimationFrame(tick);
     }
+
+    resize();
+    window.addEventListener("resize", resize);
+    tick();
+  }
+
+  window.resetReading = function () {
+    document.getElementById("result").innerHTML = "";
+    showStep("step-form");
   };
 
-  /* ── Button bindings (DOMContentLoaded後に確実にバインド) ── */
-  document.addEventListener('DOMContentLoaded', function() {
-    var btnStart = document.getElementById('btn-start');
-    if (btnStart) btnStart.addEventListener('click', function() { window.startReading(); });
+  document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("readBtn").addEventListener("click", startReading);
+    drawStars();
   });
-  /* スクリプトがbody末尾にあるためDOMは既に存在するが念のため両方対応 */
-  var btnStart = document.getElementById('btn-start');
-  if (btnStart) btnStart.addEventListener('click', function() { window.startReading(); });
-
-  window.resetAll = function() {
-    document.getElementById('birthdate').value = '';
-    document.getElementById('fullname').value  = '';
-    window.showStep('step-line');
-  };
-
 })();
 </script>
 </body>
