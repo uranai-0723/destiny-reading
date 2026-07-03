@@ -1,13 +1,13 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="苦しい恋の理由を、誕生日の数秘とオラクルから読み解くLiLith Destinyの無料診断。">
-<meta property="og:title" content="縁と魂の恋愛リーディング - LiLith Destiny">
-<meta property="og:description" content="相手の気持ち、曖昧な関係、忘れられない恋。その苦しさにある感情と縁の流れを読み解きます。">
+<meta name="description" content="音信不通、曖昧な関係、忘れられない彼。彼の本音とこの縁が止まっている理由を読み解くLiLith Destinyの無料診断。">
+<meta property="og:title" content="彼の本音診断 - LiLith Destiny">
+<meta property="og:description" content="彼は今あなたをどう思っているのか。この縁は終わったのか、止まっているだけなのかを読み解きます。">
 <meta property="og:type" content="website">
-<title>縁と魂の恋愛リーディング - LiLith Destiny</title>
+<title>彼の本音診断 - LiLith Destiny</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Serif+JP:wght@300;400;500&display=swap" rel="stylesheet">
@@ -373,6 +373,23 @@ input:focus, select:focus, textarea:focus {
   background: rgba(255, 247, 250, 0.045);
 }
 
+.teaser-reading {
+  position: relative;
+  overflow: hidden;
+}
+
+.teaser-reading p {
+  max-height: 72px;
+}
+
+.teaser-reading::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 58px;
+  background: linear-gradient(180deg, rgba(12, 8, 25, 0), rgba(12, 8, 25, 0.96));
+}
+
 .reading h3 {
   margin-bottom: 8px;
   color: rgba(255, 227, 235, 0.95);
@@ -448,9 +465,24 @@ input:focus, select:focus, textarea:focus {
   line-height: 1.9;
 }
 
+.unlock-list {
+  display: grid;
+  gap: 8px;
+  margin: 12px 0 16px;
+  color: rgba(232, 229, 220, 0.9);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.unlock-list span::before {
+  content: "・";
+  color: #d8c89d;
+  margin-right: 4px;
+}
+
 .line-btn {
-  border-color: rgba(96, 220, 108, 0.62);
-  background: linear-gradient(135deg, rgba(30, 160, 60, 0.94), rgba(21, 120, 55, 0.94));
+  border-color: rgba(216, 200, 157, 0.58);
+  background: linear-gradient(135deg, rgba(72, 56, 102, 0.96), rgba(25, 25, 58, 0.96) 52%, rgba(172, 148, 99, 0.9));
 }
 
 .reset {
@@ -467,22 +499,27 @@ input:focus, select:focus, textarea:focus {
 /* Visual refresh: moonlit LiLith world */
 body {
   background:
-    linear-gradient(180deg, rgba(5, 4, 16, 0.2) 0%, rgba(8, 5, 20, 0.56) 42%, rgba(5, 4, 16, 0.95) 100%),
-    radial-gradient(ellipse 70% 55% at 50% 18%, rgba(198, 168, 255, 0.3), transparent 58%),
-    url("lilith-moon-bg.png") center top / cover fixed,
-    #050410;
+    linear-gradient(180deg, rgba(3, 2, 10, 0.22) 0%, rgba(5, 3, 16, 0.7) 46%, rgba(3, 2, 10, 0.98) 100%),
+    radial-gradient(ellipse 62% 38% at 50% 8%, rgba(170, 152, 220, 0.22), transparent 62%),
+    url("lilith-destiny-world.png"),
+    #03020a;
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+  background-position: center top, center top, center top, center top;
+  background-size: auto, auto, min(1120px, 178vw) auto, auto;
+  background-attachment: scroll, scroll, fixed, scroll;
 }
 
 body::before {
   content: "";
   position: fixed;
-  inset: 12px;
+  inset: 10px;
   z-index: 0;
-  border: 1px solid rgba(242, 168, 207, 0.42);
+  border: 1px solid rgba(198, 175, 125, 0.42);
   border-radius: 2px;
   box-shadow:
-    inset 0 0 0 1px rgba(243, 240, 255, 0.08),
-    0 0 28px rgba(200, 181, 255, 0.18);
+    inset 0 0 0 1px rgba(226, 235, 255, 0.08),
+    inset 0 0 42px rgba(150, 166, 215, 0.09),
+    0 0 34px rgba(198, 175, 125, 0.12);
   pointer-events: none;
 }
 
@@ -492,19 +529,34 @@ body::after {
   inset: 0;
   z-index: 0;
   background:
-    linear-gradient(180deg, rgba(5, 4, 16, 0.22), rgba(5, 4, 16, 0.78) 68%, rgba(5, 4, 16, 0.94)),
-    radial-gradient(ellipse 80% 48% at 50% 0%, transparent 0%, rgba(5, 4, 16, 0.48) 72%);
+    linear-gradient(180deg, rgba(3, 2, 10, 0.22), rgba(4, 3, 14, 0.76) 56%, rgba(3, 2, 10, 0.98)),
+    radial-gradient(ellipse 100% 48% at 50% 3%, rgba(198, 214, 255, 0.08), rgba(3, 2, 10, 0.66) 74%);
   pointer-events: none;
 }
 
 .shell {
   z-index: 2;
-  padding-top: 24px;
+  padding-top: 20px;
 }
 
 .top {
+  position: relative;
   gap: 20px;
-  padding-top: 8px;
+  min-height: 610px;
+  padding-top: 22px;
+  align-content: start;
+}
+
+.top::before {
+  content: "";
+  position: absolute;
+  inset: -22px -20px auto;
+  height: 420px;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 50% 30%, rgba(222, 226, 255, 0.18), transparent 36%),
+    linear-gradient(180deg, rgba(3, 2, 10, 0.08), rgba(3, 2, 10, 0.78) 92%);
+  pointer-events: none;
 }
 
 .brand {
@@ -516,12 +568,12 @@ body::after {
 }
 
 .brand-name {
-  font-size: 15px;
-  letter-spacing: 0.34em;
-  color: rgba(246, 238, 255, 0.94);
+  font-size: 16px;
+  letter-spacing: 0.3em;
+  color: #d8c89d;
   text-shadow:
-    0 0 14px rgba(200, 181, 255, 0.82),
-    0 0 34px rgba(242, 168, 207, 0.58);
+    0 0 10px rgba(216, 200, 157, 0.48),
+    0 0 24px rgba(150, 166, 215, 0.28);
 }
 
 .moon-mark {
@@ -536,24 +588,27 @@ body::after {
 
 .eyebrow {
   margin: 0 auto;
-  border-color: rgba(242, 168, 207, 0.48);
-  background: rgba(10, 6, 26, 0.42);
-  box-shadow: 0 0 18px rgba(242, 168, 207, 0.14);
+  border-color: rgba(216, 200, 157, 0.44);
+  background: rgba(8, 7, 22, 0.62);
+  color: rgba(231, 225, 210, 0.94);
+  box-shadow:
+    0 0 18px rgba(150, 166, 215, 0.14),
+    inset 0 0 14px rgba(216, 200, 157, 0.06);
 }
 
 h1 {
-  font-size: clamp(36px, 10.5vw, 58px);
+  font-size: clamp(46px, 12vw, 76px);
   font-weight: 500;
   line-height: 1.08;
-  color: #f3f0ff;
-  background: linear-gradient(180deg, #ffffff 0%, #efe9ff 34%, #bca7ff 66%, #fff7fb 100%);
+  color: #f1e7d1;
+  background: linear-gradient(180deg, #fff7e8 0%, #d8c89d 42%, #9fa9d0 74%, #f1e7d1 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  text-shadow:
-    0 0 8px rgba(255, 255, 255, 0.72),
-    0 0 22px rgba(200, 181, 255, 0.88),
-    0 0 44px rgba(242, 168, 207, 0.72);
+  filter:
+    drop-shadow(0 0 8px rgba(216, 200, 157, 0.36))
+    drop-shadow(0 0 20px rgba(124, 139, 194, 0.34));
+  text-shadow: none;
 }
 
 .pain-list {
@@ -563,10 +618,12 @@ h1 {
   width: min(100%, 390px);
   margin: 0 auto;
   padding: 14px 16px;
-  border: 1px solid rgba(242, 168, 207, 0.24);
-  border-radius: 7px;
-  background: rgba(5, 4, 16, 0.4);
-  box-shadow: inset 0 0 22px rgba(200, 181, 255, 0.08);
+  border: 1px solid rgba(216, 200, 157, 0.26);
+  border-radius: 8px;
+  background: rgba(4, 3, 14, 0.64);
+  box-shadow:
+    inset 0 0 22px rgba(181, 198, 235, 0.08),
+    0 0 28px rgba(25, 20, 62, 0.22);
   text-align: left;
 }
 
@@ -585,19 +642,23 @@ h1 {
 }
 
 .pain::before {
-  content: "✦";
+  content: "✧";
   flex: 0 0 auto;
-  color: #f2a8cf;
-  text-shadow: 0 0 10px rgba(242, 168, 207, 0.82);
+  color: #cfc4a2;
+  text-shadow: 0 0 10px rgba(207, 196, 162, 0.48);
 }
 
 .card {
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.07), transparent 42%),
-    radial-gradient(ellipse 90% 42% at 50% 0%, rgba(200, 181, 255, 0.14), transparent 62%),
-    rgba(12, 8, 25, 0.78);
-  border-color: rgba(242, 168, 207, 0.24);
-  backdrop-filter: blur(10px);
+    linear-gradient(180deg, rgba(226, 235, 255, 0.07), transparent 44%),
+    radial-gradient(ellipse 92% 44% at 50% 0%, rgba(156, 170, 220, 0.14), transparent 64%),
+    rgba(5, 4, 16, 0.86);
+  border-color: rgba(216, 200, 157, 0.22);
+  box-shadow:
+    0 26px 90px rgba(0, 0, 0, 0.44),
+    0 0 34px rgba(124, 139, 194, 0.12),
+    inset 0 0 0 1px rgba(226, 235, 255, 0.05);
+  backdrop-filter: blur(14px);
 }
 
 /* LiLith refinement: bold violet/pink witchcraft palette */
@@ -620,11 +681,13 @@ body {
 }
 
 h1 {
-  background: linear-gradient(100deg, #c7a4ff 0%, #ff8bd1 42%, #ffe4f5 56%, #a98cff 100%);
+  background: linear-gradient(100deg, #f1e7d1 0%, #c9b783 38%, #dfe7ff 56%, #8f99bf 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 12px rgba(255, 139, 209, 0.7)) drop-shadow(0 0 28px rgba(167, 123, 255, 0.62));
+  filter:
+    drop-shadow(0 0 8px rgba(216, 200, 157, 0.42))
+    drop-shadow(0 0 20px rgba(124, 139, 194, 0.32));
   text-shadow: none;
 }
 
@@ -633,10 +696,10 @@ h1 {
 .reading h3,
 .oracle-text strong {
   font-weight: 600;
-  color: #ffd7f0;
+  color: #d8c89d;
   text-shadow:
-    0 0 12px rgba(255, 139, 209, 0.48),
-    0 0 20px rgba(167, 123, 255, 0.34);
+    0 0 10px rgba(216, 200, 157, 0.28),
+    0 0 20px rgba(124, 139, 194, 0.22);
 }
 
 .lead strong,
@@ -644,58 +707,59 @@ h1 {
 .tag,
 .big-number,
 .limited-badge {
-  color: #ff9bd7;
+  color: #d8c89d;
 }
 
 .card::after {
-  content: "☾";
+  content: "✦";
   position: absolute;
   right: 18px;
   top: 14px;
   z-index: 0;
-  color: rgba(255, 155, 215, 0.36);
+  color: rgba(216, 200, 157, 0.36);
   font-family: "Cormorant Garamond", serif;
-  font-size: 42px;
+  font-size: 34px;
   line-height: 1;
   text-shadow:
-    0 0 16px rgba(255, 139, 209, 0.54),
-    0 0 28px rgba(167, 123, 255, 0.42);
+    0 0 14px rgba(216, 200, 157, 0.36),
+    0 0 26px rgba(124, 139, 194, 0.28);
   pointer-events: none;
 }
 
 .oracle-card {
-  border-color: rgba(255, 155, 215, 0.5);
+  border-color: rgba(216, 200, 157, 0.42);
   background:
-    radial-gradient(circle at 50% 35%, rgba(255, 155, 215, 0.48), transparent 34%),
-    linear-gradient(160deg, rgba(114, 72, 210, 0.48), rgba(156, 38, 127, 0.42));
+    radial-gradient(circle at 50% 35%, rgba(226, 235, 255, 0.38), transparent 34%),
+    linear-gradient(160deg, rgba(47, 45, 86, 0.62), rgba(69, 38, 88, 0.48));
   box-shadow:
     inset 0 0 18px rgba(255, 255, 255, 0.08),
-    0 0 20px rgba(255, 139, 209, 0.28);
+    0 0 20px rgba(124, 139, 194, 0.22);
 }
 
 .reading {
-  border-color: rgba(255, 155, 215, 0.2);
+  border-color: rgba(216, 200, 157, 0.18);
   background:
-    linear-gradient(135deg, rgba(104, 62, 190, 0.16), rgba(154, 40, 120, 0.11)),
+    linear-gradient(135deg, rgba(47, 45, 86, 0.26), rgba(70, 38, 88, 0.18)),
     rgba(255, 247, 250, 0.045);
 }
 
 .line-box {
-  border-color: rgba(255, 155, 215, 0.44);
+  border-color: rgba(216, 200, 157, 0.36);
   background:
-    radial-gradient(ellipse 90% 50% at 50% 0%, rgba(255, 139, 209, 0.16), transparent 62%),
-    linear-gradient(135deg, rgba(71, 38, 142, 0.42), rgba(126, 28, 95, 0.34));
+    radial-gradient(ellipse 90% 50% at 50% 0%, rgba(216, 200, 157, 0.1), transparent 62%),
+    radial-gradient(ellipse 90% 58% at 50% 100%, rgba(124, 139, 194, 0.12), transparent 64%),
+    linear-gradient(135deg, rgba(26, 24, 58, 0.66), rgba(56, 31, 73, 0.54));
   box-shadow:
-    inset 0 0 28px rgba(255, 139, 209, 0.08),
-    0 0 26px rgba(167, 123, 255, 0.16);
+    inset 0 0 30px rgba(226, 235, 255, 0.06),
+    0 0 30px rgba(124, 139, 194, 0.16);
 }
 
 .line-box h3 {
-  color: #ffe4f5;
+  color: #e5d9b6;
   font-weight: 600;
   text-shadow:
-    0 0 12px rgba(255, 139, 209, 0.58),
-    0 0 22px rgba(167, 123, 255, 0.38);
+    0 0 10px rgba(216, 200, 157, 0.36),
+    0 0 22px rgba(124, 139, 194, 0.24);
 }
 
 .line-box p {
@@ -705,29 +769,29 @@ h1 {
 .limited-badge {
   display: inline-flex;
   margin-bottom: 10px;
-  border: 1px solid rgba(255, 155, 215, 0.56);
+  border: 1px solid rgba(216, 200, 157, 0.44);
   border-radius: 999px;
   padding: 6px 12px;
-  background: rgba(255, 139, 209, 0.12);
-  color: #ffe4f5;
+  background: rgba(216, 200, 157, 0.1);
+  color: #e5d9b6;
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.14em;
-  text-shadow: 0 0 10px rgba(255, 139, 209, 0.6);
+  text-shadow: 0 0 10px rgba(216, 200, 157, 0.36);
 }
 
 .line-btn {
-  border-color: rgba(255, 188, 230, 0.82);
+  border-color: rgba(216, 200, 157, 0.66);
   background:
-    linear-gradient(135deg, rgba(255, 92, 184, 0.94), rgba(116, 74, 226, 0.94) 54%, rgba(255, 155, 215, 0.9));
+    linear-gradient(135deg, rgba(72, 56, 102, 0.96), rgba(25, 25, 58, 0.96) 52%, rgba(172, 148, 99, 0.9));
   box-shadow:
-    0 0 18px rgba(255, 139, 209, 0.36),
-    0 0 34px rgba(167, 123, 255, 0.2);
+    0 0 16px rgba(124, 139, 194, 0.24),
+    0 0 28px rgba(216, 200, 157, 0.14);
 }
 
 .btn:hover,
 .line-btn:hover {
-  filter: brightness(1.12) saturate(1.1);
+  filter: brightness(1.08) saturate(0.96);
 }
 
 @media (max-width: 430px) {
@@ -753,14 +817,14 @@ h1 {
     </div>
 
     <section class="hero">
-      <span class="eyebrow">無料診断 / 数秘とオラクル</span>
-      <h1>縁と魂の<br>恋愛リーディング</h1>
-      <p class="lead">苦しい恋には、理由がある。相手の気持ちが分からない夜も、連絡を待ち続けてしまう時間も、あなたが重いからではありません。</p>
+      <span class="eyebrow">無料診断 / 彼の本音と縁の流れ</span>
+      <h1>彼の本音診断</h1>
+      <p class="lead">彼は今、あなたをどう思っているのか。この縁は終わったのか、それとも止まっているだけなのか。数秘とオラクルから、今の恋に起きている流れを読み解きます。</p>
       <div class="pain-list" aria-label="よくある恋の悩み">
-        <div class="pain">相手の気持ちが分からない</div>
-        <div class="pain">連絡を待ち続けてしまう</div>
-        <div class="pain">曖昧な関係が終わらない</div>
-        <div class="pain">忘れたいのに忘れられない</div>
+        <div class="pain">未読・既読スルーが続いている</div>
+        <div class="pain">私は彼にとって何なのか知りたい</div>
+        <div class="pain">曖昧な関係を終わらせたい</div>
+        <div class="pain">忘れたいのに、まだ彼を待っている</div>
       </div>
     </section>
   </header>
@@ -768,8 +832,8 @@ h1 {
   <section class="step active" id="step-form">
     <div class="card">
       <div class="card-inner">
-        <h2 class="section-title">今の恋に起きている<br>感情と縁の流れを読む</h2>
-        <p class="section-copy">誕生日から誕生数を出し、今の恋の苦しさ、相手との縁、3ヶ月の流れ、あなたが本当に求める愛の形を鑑定します。</p>
+        <h2 class="section-title">彼の沈黙と、ふたりの縁に<br>今起きていることを読む</h2>
+        <p class="section-copy">誕生日から誕生数を出し、彼の本音、止まっている理由、今あなたが追うべきか待つべきかの入口を診断します。</p>
 
         <div class="field">
           <label for="birthdate">あなたの誕生日</label>
@@ -781,20 +845,23 @@ h1 {
           <input id="name" type="text" placeholder="例：リリス" autocomplete="name">
         </div>
 
-        <div class="group-label">今の恋の状態</div>
+        <div class="group-label">今いちばん近い状況</div>
         <div class="choice-grid">
-          <label class="choice"><input type="radio" name="situation" value="unknown" checked><span>相手の気持ちが不明</span></label>
-          <label class="choice"><input type="radio" name="situation" value="waiting"><span>連絡を待っている</span></label>
+          <label class="choice"><input type="radio" name="situation" value="noContact" checked><span>音信不通・未読</span></label>
           <label class="choice"><input type="radio" name="situation" value="vague"><span>曖昧な関係</span></label>
-          <label class="choice"><input type="radio" name="situation" value="cannotForget"><span>忘れられない</span></label>
+          <label class="choice"><input type="radio" name="situation" value="complicated"><span>不倫・複雑恋愛</span></label>
+          <label class="choice"><input type="radio" name="situation" value="physical"><span>身体の関係がある</span></label>
+          <label class="choice"><input type="radio" name="situation" value="ex"><span>元彼・忘れられない</span></label>
+          <label class="choice"><input type="radio" name="situation" value="unknown"><span>彼の本音が不明</span></label>
         </div>
 
         <div class="field">
           <label for="memo">相談内容（任意）</label>
-          <textarea id="memo" placeholder="例：彼からの連絡が減って、関係が進まないまま不安です。"></textarea>
+          <textarea id="memo" placeholder="例：彼から1ヶ月連絡がなく、待つべきか私から送るべきか分かりません。"></textarea>
         </div>
+        <p class="note">入力内容は、診断結果の表示と個別リーディングの参考として保存されます。</p>
 
-        <button class="btn" type="button" id="readBtn">苦しい恋の理由を読み解く</button>
+        <button class="btn" type="button" id="readBtn">彼の本音と縁の流れを診断する</button>
       </div>
     </div>
   </section>
@@ -828,6 +895,9 @@ h1 {
   "use strict";
 
   var LINE_URL = "https://lin.ee/qHxuTbW";
+  // Apps ScriptのウェブアプリURLを入れると、診断データがGoogleシートへ自動保存されます。
+  var SAVE_ENDPOINT = "";
+  var latestSubmission = null;
 
   var READINGS = {
     1: {
@@ -937,11 +1007,22 @@ h1 {
     { name: "やわらかな境界線", text: "愛することと、我慢し続けることは同じではありません。" }
   ];
 
+  var SITUATION_LABELS = {
+    noContact: "音信不通・未読",
+    vague: "曖昧な関係",
+    complicated: "不倫・複雑恋愛",
+    physical: "身体の関係がある",
+    ex: "元彼・忘れられない",
+    unknown: "彼の本音が不明"
+  };
+
   var SITUATION_COPY = {
-    unknown: "相手の本音を知りたい気持ちが強い今、必要なのは答えを当てることより、相手の態度に振り回されない軸を取り戻すことです。",
-    waiting: "連絡を待つ時間が長いほど、心は相手中心に傾きます。今は待つ恋から、自分を整える恋へ戻る合図です。",
-    vague: "曖昧な関係が続くと、希望と不安が同時に育ちます。関係の名前より、あなたが安心できているかを見てください。",
-    cannotForget: "忘れられない恋は、まだ終わっていない縁ではなく、まだ癒えていない感情を知らせていることがあります。"
+    noContact: "彼の沈黙が続くほど、心は「嫌われたのか」「もう終わりなのか」を探し続けます。今必要なのは、追う前にこの沈黙が拒絶なのか、停滞なのかを見極めることです。",
+    vague: "曖昧な関係が続くと、少しの優しさに希望を感じ、少しの距離に不安が膨らみます。関係の名前より、彼があなたをどの位置に置いているのかを見る時期です。",
+    complicated: "複雑な恋は、好きな気持ちだけでは動けない現実を抱えています。今は気持ちの強さだけでなく、彼がどこまで責任を持って向き合えるかが鍵になります。",
+    physical: "身体の距離が近いほど、心の距離が分からなくなることがあります。彼が求めているものが安心なのか、都合のよさなのかを丁寧に見る必要があります。",
+    ex: "忘れられない恋は、未練だけではなく、まだ言葉にできていない痛みや願いを残していることがあります。戻るべき縁か、手放す準備の縁かを見極める時です。",
+    unknown: "彼の本音を知りたい気持ちが強い今、必要なのは答えを当てることだけではありません。彼の態度に振り回されない軸を取り戻すことです。"
   };
 
   function reduceNumber(num) {
@@ -979,6 +1060,38 @@ h1 {
     return checked ? checked.value : "unknown";
   }
 
+  function saveSubmission(data) {
+    latestSubmission = data;
+
+    try {
+      var saved = JSON.parse(localStorage.getItem("lilithLeadSubmissions") || "[]");
+      saved.push(data);
+      localStorage.setItem("lilithLeadSubmissions", JSON.stringify(saved.slice(-100)));
+    } catch (error) {
+      // Local backup is best-effort only.
+    }
+
+    if (!SAVE_ENDPOINT) return Promise.resolve({ skipped: true });
+
+    return fetch(SAVE_ENDPOINT, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify(data)
+    }).catch(function () {
+      return { failed: true };
+    });
+  }
+
+  function updateLineClick() {
+    if (!latestSubmission) return;
+    var clickedData = Object.assign({}, latestSubmission, {
+      lineClicked: "yes",
+      lineClickedAt: new Date().toISOString()
+    });
+    saveSubmission(clickedData);
+  }
+
   function oracleIcon() {
     return '<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">' +
       '<path d="M34 8c-8 3.5-13 11-13 20.5 0 10.5 7.4 19.5 17.2 21.7C24.4 51.4 13 40.6 13 26.8 13 14.6 22.7 4.9 34 8Z" fill="#e9ddc7"/>' +
@@ -989,7 +1102,9 @@ h1 {
   function startReading() {
     var birthdate = document.getElementById("birthdate").value;
     var name = document.getElementById("name").value.trim() || "あなた";
+    var memo = document.getElementById("memo").value.trim();
     var situation = selectedSituation();
+    var situationLabel = SITUATION_LABELS[situation] || "彼の本音が不明";
 
     if (!birthdate) {
       alert("誕生日を入力してください。");
@@ -1002,23 +1117,37 @@ h1 {
       var number = calcBirthNumber(birthdate);
       var reading = READINGS[number] || READINGS[9];
       var oracle = ORACLES[(number + situation.length) % ORACLES.length];
-      var lineText = encodeURIComponent("無料鑑定希望：" + name + " / 誕生数" + number + " / " + reading.title);
+      var lineText = encodeURIComponent("個別リーディング希望：" + name + " / " + situationLabel + " / 誕生数" + number + " / " + reading.title + (memo ? " / 相談：" + memo : ""));
+      var submissionData = {
+        submittedAt: new Date().toISOString(),
+        name: name,
+        birthdate: birthdate,
+        situation: situationLabel,
+        memo: memo,
+        birthNumber: number,
+        readingTitle: reading.title,
+        oracle: oracle.name,
+        lineClicked: "no",
+        pageUrl: location.href,
+        referrer: document.referrer || "",
+        userAgent: navigator.userAgent || ""
+      };
+
+      saveSubmission(submissionData);
 
       document.getElementById("result").innerHTML =
         '<div class="result-head">' +
-        '<span class="tag">Birth Number / ' + number + '</span>' +
-        '<div class="number-row"><div><h2 class="section-title">' + escapeHTML(name) + 'さんの恋の流れ</h2><p class="section-copy">誕生日から出した誕生数は ' + number + '。今の恋には、次のような感情と縁の流れが見えています。</p></div><div class="big-number">' + number + '</div></div>' +
+        '<span class="tag">' + escapeHTML(situationLabel) + ' / Birth Number ' + number + '</span>' +
+        '<div class="number-row"><div><h2 class="section-title">' + escapeHTML(name) + 'さんと彼の<br>今の縁の流れ</h2><p class="section-copy">誕生日から出した誕生数は ' + number + '。今の恋には、次のような感情と縁のサインが見えています。</p></div><div class="big-number">' + number + '</div></div>' +
         '</div>' +
         '<div class="oracle"><div class="oracle-card">' + oracleIcon() + '</div><div class="oracle-text"><strong>Oracle：' + escapeHTML(oracle.name) + '</strong><span>' + escapeHTML(oracle.text) + '</span></div></div>' +
         '<div class="reading-grid">' +
         '<section class="reading"><h3>なぜこの恋が苦しいのか</h3><p>' + escapeHTML(reading.reason) + '</p></section>' +
-        '<section class="reading"><h3>相手との縁に今何が起きているのか</h3><p>' + escapeHTML(reading.bond) + '</p></section>' +
-        '<section class="reading"><h3>相手の本音や現状</h3><p>' + escapeHTML(reading.partner) + '</p></section>' +
-        '<section class="reading"><h3>今後3ヶ月の流れ</h3><p>' + escapeHTML(reading.months) + '</p></section>' +
-        '<section class="reading"><h3>あなたが本当に求める愛の形</h3><p>' + escapeHTML(reading.love) + '</p></section>' +
+        '<section class="reading"><h3>この縁は終わりか、止まっているだけか</h3><p>' + escapeHTML(reading.bond) + '</p></section>' +
+        '<section class="reading teaser-reading"><h3>彼の本音や現状の一部</h3><p>' + escapeHTML(reading.partner) + '</p></section>' +
         '<section class="reading"><h3>今の状況からのメッセージ</h3><p>' + escapeHTML(SITUATION_COPY[situation]) + '</p></section>' +
         '</div>' +
-        '<div class="line-box"><div class="limited-badge">一日5名限定</div><h3>詳しい個別鑑定で、彼との縁をさらに深く読む</h3><p>ここに出た結果は、あなたの恋に流れているサインの一部です。相手の本音、今動くべきか待つべきか、ふたりの縁がこの先どこへ向かうのかまで知りたい方は、公式LINEで個別に読み解きます。</p><div class="reading"><h3>無料鑑定の受け方</h3><p>ボタンから公式LINEを追加し、トーク画面で「無料鑑定希望」と送ってください。診断結果をもとに、今の恋の流れを個別にお届けします。</p></div><a class="btn line-btn" href="' + LINE_URL + '?text=' + lineText + '" target="_blank" rel="noopener">公式LINEで個別鑑定を受け取る</a></div>';
+        '<div class="line-box"><div class="limited-badge">一日5名限定</div><h3>彼の本音・連絡の可能性・動くタイミングを個別リーディングで読む</h3><p>ここに出た結果は、あなたの恋に流れているサインの入口です。彼の本音、連絡が来る可能性、今あなたから動くべきか待つべきかは、状況によって大きく変わります。</p><div class="unlock-list"><span>彼は今、あなたをどう思っているのか</span><span>この縁は終わったのか、止まっているだけなのか</span><span>連絡するならいつ・どんな言葉がいいのか</span><span>やってはいけない行動は何か</span></div><div class="reading"><h3>個別リーディングの受け方</h3><p>ボタンから公式LINEを追加し、トーク画面で「個別リーディング希望」と送ってください。診断結果をもとに、今の恋の流れをお届けします。</p></div><a class="btn line-btn" href="' + LINE_URL + '?text=' + lineText + '" target="_blank" rel="noopener" onclick="updateLineClick()">LINEで個別リーディングを受け取る</a></div>';
 
       showStep("step-result");
     }, 900);
